@@ -1,0 +1,9 @@
+<header [ngClass]="['header', fullscreen ? 'header--fullscreen' : '']">
+  <h1 class="header__title">{{ title }}</h1>
+
+  <div [ngClass]="['header__ask-name', fullscreen ? 'header__ask-name--displayed' : '']">
+    <label class="header__label" for="name">Enter your name:</label>
+    <input class="header__input" type="text" name="name" placeholder="Your name..." #newName />
+    <button class="header__button" type="button" (click)="emitNewName(newName.value)">Submit</button>
+  </div>
+</header>
