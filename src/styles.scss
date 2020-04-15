@@ -1,1 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: "BalooBhai2-Medium";
+  src: local("BalooBhai2-Medium"), url(./assets/fonts/Baloo_Bhai_2/BalooBhai2-Medium.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "BalooBhai2-Regular";
+  src: local("BalooBhai2-Regular"), url(./assets/fonts/Baloo_Bhai_2/BalooBhai2-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+
+  font-family: 'BalooBhai2-Regular';
+}
