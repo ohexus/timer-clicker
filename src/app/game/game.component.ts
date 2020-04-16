@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core'
 
-import { TimerComponent }  from './timer/timer.component';
+import { TimerComponent } from './timer/timer.component';
 import { ParseError } from '@angular/compiler';
 
 @Component({
@@ -16,8 +16,7 @@ export class GameComponent {
   averageClicks: number = 0
 
   clicksSpeed: number = 0
-  clicksInTheLastSecond: number = 0
-  clicksInTheCurrentSecond: number = 0
+  clicksPerStep: number = 0
 
   timerLength: number = 10
 
@@ -26,7 +25,7 @@ export class GameComponent {
 
   increaseClicks() {
     this.totalClicks++
-    this.clicksInTheCurrentSecond++
+    this.clicksPerStep++
   }
 
   startGame() {
@@ -59,21 +58,56 @@ export class GameComponent {
 
   calculateClicksSpeed() {
     // 1 instead of 0 to avoid infinity
-    let time = 1
-    
-    const timeStep = 0.1
+    let time: number = 1
+
+    const timeStep: number = 0.1
+
+    //clicks steps for smooth based on timeStep, from newest to oldest
+    let clicksStep1: number = 0
+    let clicksStep2: number = 0
+    let clicksStep3: number = 0
+    let clicksStep4: number = 0
+    let clicksStep5: number = 0
+    let clicksStep6: number = 0
+    let clicksStep7: number = 0
+    let clicksStep8: number = 0
+    let clicksStep9: number = 0
+
+    const changeStepsValues = (currentStep: number) => {
+      clicksStep9 = clicksStep8
+      clicksStep8 = clicksStep7
+      clicksStep7 = clicksStep6
+      clicksStep6 = clicksStep5
+      clicksStep5 = clicksStep4
+      clicksStep4 = clicksStep3
+      clicksStep3 = clicksStep2
+      clicksStep2 = clicksStep1
+      clicksStep1 = currentStep
+    }
+
+    const sumSteps = (currentStep: number) => {
+      return clicksStep9
+        + clicksStep8
+        + clicksStep7
+        + clicksStep6
+        + clicksStep5
+        + clicksStep4
+        + clicksStep3
+        + clicksStep2
+        + clicksStep1
+        + currentStep
+    }
 
     let timerId = setInterval(() => {
       if (time <= this.timerLength + 1) {
-        this.clicksSpeed = this.clicksInTheLastSecond + this.clicksInTheCurrentSecond / 2
+        const currentSpeed = ((sumSteps(this.clicksPerStep) / 10) / timeStep)
+
+        this.clicksSpeed = parseFloat(currentSpeed.toFixed(2))
 
         time += timeStep
-        const fixedTime = parseFloat(time.toFixed(2))
-        
-        if (Number.isInteger(fixedTime)) {
-          this.clicksInTheLastSecond = this.clicksInTheCurrentSecond
-          this.clicksInTheCurrentSecond = 0
-        }
+
+        changeStepsValues(this.clicksPerStep)
+        this.clicksPerStep = 0
       } else {
         clearInterval(timerId)
       }
