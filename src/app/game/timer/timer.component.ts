@@ -8,7 +8,7 @@ import { Component, Output, EventEmitter } from '@angular/core'
 export class TimerComponent {
   timerTotalLength: number = 10
   timerCurrentValue: number = this.timerTotalLength
-  
+
   @Output() timerEndEvent = new EventEmitter()
 
   // changeTimerLength() {
@@ -31,4 +31,15 @@ export class TimerComponent {
     this.timerCurrentValue = this.timerTotalLength
   }
 
+  convertTime(timeInSeconds: number) {
+    const format = (num: number, size: number) => ('00' + num).slice(size * -1)
+    const minutes = Math.floor(timeInSeconds / 60) % 60
+    const seconds = Math.floor(timeInSeconds - minutes * 60)
+
+    return `${format(minutes, 2)}:${format(seconds, 2)}`;
+  }
+
+  getTimerRangePosition() {
+    return (this.timerCurrentValue * 100) / this.timerTotalLength
+  }
 }
