@@ -9,6 +9,8 @@ export class TimerComponent {
   timerTotalLength: number = 10
   timerCurrentValue: number = this.timerTotalLength
 
+  timerStep: number = 0.1
+
   @Output() timerEndEvent = new EventEmitter()
 
   // changeTimerLength() {
@@ -17,13 +19,13 @@ export class TimerComponent {
 
   startTimer() {
     let timerId = setInterval(() => {
-      this.timerCurrentValue--
+      this.timerCurrentValue -= this.timerStep
 
       if (this.timerCurrentValue < 0) {
         this.emitTimerEnd()
         clearInterval(timerId)
       }
-    }, 1000)
+    }, this.timerStep * 1000)
   }
 
   emitTimerEnd() {
