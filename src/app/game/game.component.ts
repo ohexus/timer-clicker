@@ -1,4 +1,6 @@
-import { Component } from '@angular/core'
+import { Component, ViewChild } from '@angular/core'
+
+import { TimerComponent }  from './timer/timer.component';
 
 @Component({
   selector: 'app-game',
@@ -6,6 +8,9 @@ import { Component } from '@angular/core'
   styleUrls: ['./game.component.scss']
 })
 export class GameComponent {
+  @ViewChild(TimerComponent)
+  private timer: TimerComponent
+
   totalClicks: number = 0
   averageClicks: number = 0
 
@@ -13,13 +18,15 @@ export class GameComponent {
 
   isFinished: boolean = true
 
-  startGame() {
-    this.increaseTotalClicks()
+  isGameDelayed: boolean = false
+
+  increaseTotalClicks() {
+    this.totalClicks++
   }
 
-  finishGame() {
-    this.isFinished = true
-    this.averageClicks = this.totalClicks / this.timerSeconds
+  startGame() {
+    this.increaseTotalClicks()
+    this.timer.startTimer()
   }
 
   restartGame() {
@@ -29,7 +36,14 @@ export class GameComponent {
     this.startGame()
   }
 
-  increaseTotalClicks() {
-    this.totalClicks++
+  finishGame() {
+    this.isFinished = true
+    this.averageClicks = this.totalClicks / this.timerSeconds
+    this.toggleGameDelay()
+  }
+
+  toggleGameDelay() {
+    this.isGameDelayed = true
+    setTimeout(() => this.isGameDelayed = false, 2000);
   }
 }

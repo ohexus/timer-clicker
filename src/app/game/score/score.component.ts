@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./score.component.scss']
 })
 export class ScoreComponent {
-  @Input() total: boolean
-  @Input() average: boolean
+  @Input() total: number
+  @Input() average: number
 }
