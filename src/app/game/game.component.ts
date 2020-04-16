@@ -1,7 +1,6 @@
 import { Component, ViewChild } from '@angular/core'
 
-import { TimerComponent } from './timer/timer.component';
-import { ParseError } from '@angular/compiler';
+import { TimerComponent } from './timer/timer.component'
 
 @Component({
   selector: 'app-game',
@@ -57,9 +56,7 @@ export class GameComponent {
   }
 
   calculateClicksSpeed() {
-    // 1 instead of 0 to avoid infinity
-    let time: number = 1
-
+    let time: number = 0
     const timeStep: number = 0.1
 
     //clicks steps for smooth based on timeStep, from newest to oldest
@@ -99,7 +96,7 @@ export class GameComponent {
     }
 
     let timerId = setInterval(() => {
-      if (time <= this.timerLength + 1) {
+      if (time <= this.timerLength) {
         this.clicksSpeed = parseFloat(sumSteps(this.clicksPerStep).toFixed(2))
 
         time += timeStep
