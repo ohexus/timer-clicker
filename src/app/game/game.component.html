@@ -1,0 +1,4 @@
+<div class="game">
+  <app-score [total]="totalClicks" [average]="averageClicks"></app-score>
+  <app-big-red-button (click)="isFinished ? restartGame() : increaseTotalClicks()"></app-big-red-button>
+</div>
