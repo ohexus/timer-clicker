@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core'
 
 import { TimerComponent }  from './timer/timer.component';
+import { ParseError } from '@angular/compiler';
 
 @Component({
   selector: 'app-game',
@@ -16,6 +17,7 @@ export class GameComponent {
 
   clicksSpeed: number = 0
   clicksInTheLastSecond: number = 0
+  clicksInTheCurrentSecond: number = 0
 
   timerLength: number = 10
 
@@ -24,7 +26,7 @@ export class GameComponent {
 
   increaseClicks() {
     this.totalClicks++
-    this.clicksInTheLastSecond++
+    this.clicksInTheCurrentSecond++
   }
 
   startGame() {
@@ -58,16 +60,23 @@ export class GameComponent {
   calculateClicksSpeed() {
     // 1 instead of 0 to avoid infinity
     let time = 1
+    
+    const timeStep = 0.1
 
     let timerId = setInterval(() => {
       if (time <= this.timerLength + 1) {
-        this.clicksSpeed = this.clicksInTheLastSecond
-        time++
+        this.clicksSpeed = this.clicksInTheLastSecond + this.clicksInTheCurrentSecond / 2
+
+        time += timeStep
+        const fixedTime = parseFloat(time.toFixed(2))
+        
+        if (Number.isInteger(fixedTime)) {
+          this.clicksInTheLastSecond = this.clicksInTheCurrentSecond
+          this.clicksInTheCurrentSecond = 0
+        }
       } else {
         clearInterval(timerId)
       }
-      
-      this.clicksInTheLastSecond = 0
-    }, 1000)
+    }, timeStep * 1000)
   }
 }
