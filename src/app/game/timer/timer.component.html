@@ -1,11 +1,19 @@
 <div class="timer">
-  <span class="timer__rest-value">
-    {{convertTime(timerCurrentValue)}}
-  </span>
-
-  <input class="timer__range" name="range" type="range" min="0" max="100" disabled [value]="getTimerRangePosition()" />
+  <div class="timer__values">
+    <span class="timer__rest-value">
+      {{convertTime(timerCurrentValue)}}
+    </span>
   
-  <span class="timer__total-value">
-    {{convertTime(timerTotalLength)}}
-  </span>
+    <input class="timer__range" name="range" type="range" min="0" max="100" disabled [value]="getTimerRangePosition()" />
+    
+    <span class="timer__total-value">
+      {{convertTime(timerTotalLength)}}
+    </span>
+  </div>
+
+  <p class="timer__change-title">Change timer length:</p>
+  <div class="timer__controls">
+    <button class="timer__increase" (click)="increaseTimerLength()" [disabled]="isTimerStarted">Increase</button>
+    <button class="timer__decrease" (click)="decreaseTimerLength()" [disabled]="isTimerStarted || timerTotalLength <= 1">Decrease</button>
+  </div>
 </div>

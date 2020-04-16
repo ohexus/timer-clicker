@@ -11,26 +11,44 @@ export class TimerComponent {
 
   timerStep: number = 0.1
 
+  isTimerStarted: boolean = false
+
   @Output() timerEndEvent = new EventEmitter()
-
-  // changeTimerLength() {
-
-  // }
-
-  startTimer() {
-    let timerId = setInterval(() => {
-      this.timerCurrentValue -= this.timerStep
-
-      if (this.timerCurrentValue < 0) {
-        this.emitTimerEnd()
-        clearInterval(timerId)
-      }
-    }, this.timerStep * 1000)
-  }
+  @Output() timerLengthEvent = new EventEmitter()
 
   emitTimerEnd() {
     this.timerEndEvent.emit()
     this.timerCurrentValue = this.timerTotalLength
+  }
+
+  emitTimerLength() {
+    this.timerLengthEvent.emit(this.timerTotalLength)
+  }
+
+  increaseTimerLength() {
+    this.timerTotalLength++
+    this.timerCurrentValue = this.timerTotalLength
+    this.emitTimerLength()
+  }
+  
+  decreaseTimerLength() {
+    this.timerTotalLength--
+    this.timerCurrentValue = this.timerTotalLength
+    this.emitTimerLength()
+  }
+
+  startTimer() {
+    this.isTimerStarted = true
+
+    let timerId = setInterval(() => {
+      this.timerCurrentValue -= this.timerStep
+
+      if (this.timerCurrentValue < 0) {
+        this.isTimerStarted = false
+        this.emitTimerEnd()
+        clearInterval(timerId)
+      }
+    }, this.timerStep * 1000)
   }
 
   convertTime(timeInSeconds: number) {
@@ -38,7 +56,7 @@ export class TimerComponent {
     const minutes = Math.floor(timeInSeconds / 60) % 60
     const seconds = Math.floor(timeInSeconds - minutes * 60)
 
-    return `${format(minutes, 2)}:${format(seconds, 2)}`;
+    return `${format(minutes, 2)}:${format(seconds, 2)}`
   }
 
   getTimerRangePosition() {

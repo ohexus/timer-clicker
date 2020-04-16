@@ -1,0 +1,10 @@
+.timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__values,
+  &__controls {
+    display: flex;
+  }
+}

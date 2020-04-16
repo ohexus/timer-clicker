@@ -1,13 +1,15 @@
 <div class="game">
   <app-score [total]="totalClicks" [average]="averageClicks"></app-score>
 
+  <h3 class="game__speed">{{clicksSpeed}} c/s</h3>
+
   <app-big-red-button (click)="isGameDelayed 
     ? null
     : isFinished 
       ? restartGame()
-      : increaseTotalClicks()">
+      : increaseClicks()">
   </app-big-red-button>
   <h3 *ngIf="isGameDelayed">GAME OVER</h3>
 
-  <app-timer (timerEndEvent)="finishGame()"></app-timer>
+  <app-timer (timerEndEvent)="finishGame()" (timerLengthEvent)="changeTimerLength($event)"></app-timer>
 </div>

@@ -14,19 +14,23 @@ export class GameComponent {
   totalClicks: number = 0
   averageClicks: number = 0
 
-  timerSeconds: number = 10
+  clicksSpeed: number = 0
+  clicksInTheLastSecond: number = 0
+
+  timerLength: number = 10
 
   isFinished: boolean = true
-
   isGameDelayed: boolean = false
 
-  increaseTotalClicks() {
+  increaseClicks() {
     this.totalClicks++
+    this.clicksInTheLastSecond++
   }
 
   startGame() {
-    this.increaseTotalClicks()
+    this.increaseClicks()
     this.timer.startTimer()
+    this.calculateClicksSpeed()
   }
 
   restartGame() {
@@ -38,12 +42,36 @@ export class GameComponent {
 
   finishGame() {
     this.isFinished = true
-    this.averageClicks = this.totalClicks / this.timerSeconds
+    this.averageClicks = this.formatClicksNumber(this.totalClicks, this.timerLength)
     this.toggleGameDelay()
   }
 
   toggleGameDelay() {
     this.isGameDelayed = true
     setTimeout(() => this.isGameDelayed = false, 2000);
+  }
+
+  changeTimerLength(value: number) {
+    this.timerLength = value
+  }
+
+  calculateClicksSpeed() {
+    // 1 instead of 0 to avoid infinity
+    let time = 1
+
+    let timerId = setInterval(() => {
+      if (time <= this.timerLength + 1) {
+        this.clicksSpeed = this.formatClicksNumber(this.clicksInTheLastSecond, time)
+        time++
+      } else {
+        clearInterval(timerId)
+      }
+      
+      this.clicksInTheLastSecond = 0
+    }, 1000)
+  }
+
+  formatClicksNumber(clicks: number, time: number) {
+    return parseFloat((clicks / time).toFixed(2))
   }
 }
