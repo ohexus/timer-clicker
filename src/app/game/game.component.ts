@@ -100,9 +100,7 @@ export class GameComponent {
 
     let timerId = setInterval(() => {
       if (time <= this.timerLength + 1) {
-        const currentSpeed = ((sumSteps(this.clicksPerStep) / 10) / timeStep)
-
-        this.clicksSpeed = parseFloat(currentSpeed.toFixed(2))
+        this.clicksSpeed = parseFloat(sumSteps(this.clicksPerStep).toFixed(2))
 
         time += timeStep
 
