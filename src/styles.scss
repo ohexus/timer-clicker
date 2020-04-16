@@ -1,13 +1,13 @@
 @font-face {
-  font-family: "BalooBhai2-Medium";
-  src: local("BalooBhai2-Medium"), url(./assets/fonts/Baloo_Bhai_2/BalooBhai2-Medium.ttf);
+  font-family: "CircularStd-Medium";
+  src: local("CircularStd-Medium"), url(./assets/fonts/CircularStd/CircularStd-Medium.ttf);
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
-  font-family: "BalooBhai2-Regular";
-  src: local("BalooBhai2-Regular"), url(./assets/fonts/Baloo_Bhai_2/BalooBhai2-Regular.ttf);
+  font-family: "CircularStd-Book";
+  src: local("CircularStd-Book"), url(./assets/fonts/CircularStd/CircularStd-Book.ttf);
   font-weight: normal;
   font-style: normal;
 }
@@ -17,5 +17,5 @@ body {
   margin: 0;
   padding: 0;
 
-  font-family: 'BalooBhai2-Regular';
+  font-family: 'CircularStd-Book';
 }
