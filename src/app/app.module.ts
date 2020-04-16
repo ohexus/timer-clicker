@@ -6,7 +6,7 @@ import { HeaderComponent } from './header/header.component';
 import { GreetingComponent } from './greeting/greeting.component';
 import { GameComponent } from './game/game.component';
 import { ScoreComponent } from './game/score/score.component';
-import { BigRedButtonComponent } from './game/big-red-button/big-red-button.component';
+import { ClickButtonComponent } from './game/click-button/click-button.component';
 import { TimerComponent } from './game/timer/timer.component';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { TimerComponent } from './game/timer/timer.component';
     GreetingComponent,
     GameComponent,
     ScoreComponent,
-    BigRedButtonComponent,
+    ClickButtonComponent,
     TimerComponent
   ],
   imports: [

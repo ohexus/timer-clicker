@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BigRedButtonComponent } from './big-red-button.component';
+import { ClickButtonComponent } from './click-button.component';
 
-describe('BigRedButtonComponent', () => {
-  let component: BigRedButtonComponent;
-  let fixture: ComponentFixture<BigRedButtonComponent>;
+describe('ClickButtonComponent', () => {
+  let component: ClickButtonComponent;
+  let fixture: ComponentFixture<ClickButtonComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BigRedButtonComponent ]
+      declarations: [ ClickButtonComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BigRedButtonComponent);
+    fixture = TestBed.createComponent(ClickButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
