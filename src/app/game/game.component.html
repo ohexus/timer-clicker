@@ -3,13 +3,12 @@
 
   <h3 class="game__speed">{{clicksSpeed}} c/s</h3>
 
-  <app-click-button (click)="isGameDelayed 
+  <app-click-button [isGameDelayed]="isGameDelayed" [isGameFinished]="isGameFinished" (click)="isGameDelayed 
     ? null
-    : isFinished 
+    : isGameFinished 
       ? restartGame()
       : increaseClicks()">
   </app-click-button>
-  <h3 *ngIf="isGameDelayed">GAME OVER</h3>
 
   <app-timer (timerEndEvent)="finishGame()" (timerLengthEvent)="changeTimerLength($event)"></app-timer>
 </div>

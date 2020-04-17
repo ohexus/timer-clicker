@@ -1,1 +1,6 @@
-<button class="click-button" type="button"></button>
+<div class="click-button" (click)="isGameDelayed ? null : runCircle()">
+  <p class="click-button__text">
+    {{isGameDelayed ? 'Game over!' : isGameFinished ? 'Start new game' : 'Click!'}}
+  </p>
+  <div class="click-button__circle" *ngFor="let circle of circles"></div>
+</div>

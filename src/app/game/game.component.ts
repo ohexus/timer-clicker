@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core'
 
 import { TimerComponent } from './timer/timer.component'
+import { ClickButtonComponent } from './click-button/click-button.component'
 
 @Component({
   selector: 'app-game',
@@ -10,6 +11,9 @@ import { TimerComponent } from './timer/timer.component'
 export class GameComponent {
   @ViewChild(TimerComponent)
   private timer: TimerComponent
+  
+  @ViewChild(ClickButtonComponent)
+  private clickButton: ClickButtonComponent
 
   totalClicks: number = 0
   averageClicks: number = 0
@@ -19,7 +23,7 @@ export class GameComponent {
 
   timerLength: number = 10
 
-  isFinished: boolean = true
+  isGameFinished: boolean = true
   isGameDelayed: boolean = false
 
   increaseClicks() {
@@ -36,14 +40,15 @@ export class GameComponent {
   restartGame() {
     this.totalClicks = 0
     this.averageClicks = 0
-    this.isFinished = false
+    this.isGameFinished = false
     this.startGame()
   }
 
   finishGame() {
-    this.isFinished = true
+    this.isGameFinished = true
     this.averageClicks = parseFloat((this.totalClicks / this.timerLength).toFixed(2))
     this.toggleGameDelay()
+    this.clickButton.destroyCircles()
   }
 
   toggleGameDelay() {
@@ -105,6 +110,7 @@ export class GameComponent {
         this.clicksPerStep = 0
       } else {
         clearInterval(timerId)
+        this.clicksSpeed = 0
       }
     }, timeStep * 1000)
   }
