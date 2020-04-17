@@ -86,8 +86,6 @@
 
     outline: 0;
 
-    border-radius: 2px;
-
     background-color: transparent;
     color: #EAE0D5;
 
@@ -96,6 +94,8 @@
     transition: 0.3s;
 
     &:focus {
+      border-radius: 2px;
+      
       background-color: #EAE0D5;
       color: #000000;
     }

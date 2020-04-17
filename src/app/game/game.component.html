@@ -1,13 +1,12 @@
 <div class="game">
   <app-score [total]="totalClicks" [average]="averageClicks"></app-score>
 
-  <h3 class="game__speed">{{clicksSpeed}} c/s</h3>
-
-  <app-click-button [isGameDelayed]="isGameDelayed" [isGameFinished]="isGameFinished" (click)="isGameDelayed 
-    ? null
-    : isGameFinished 
-      ? restartGame()
-      : increaseClicks()">
+  <app-click-button [clicksSpeed]="clicksSpeed" [isGameDelayed]="isGameDelayed" [isGameFinished]="isGameFinished"
+    (click)="isGameDelayed 
+      ? null
+      : isGameFinished 
+        ? restartGame()
+        : increaseClicks()">
   </app-click-button>
 
   <app-timer (timerEndEvent)="finishGame()" (timerLengthEvent)="changeTimerLength($event)"></app-timer>

@@ -8,17 +8,18 @@ import { Component, Input } from '@angular/core';
 export class ClickButtonComponent {
   @Input() isGameDelayed: boolean
   @Input() isGameFinished: boolean
+  @Input() clicksSpeed: number
 
-  circles: string[] = ['circle']
+  circles: string[] = []
 
   runCircle() {
     this.circles.push('circle')
   }
 
   destroyCircles() {
-    // wait for all circles animations ends
+    // wait for last circle animation end
     setTimeout(() => {
       this.circles = []
-    }, 2000)
+    }, 1250)
   }
 }
