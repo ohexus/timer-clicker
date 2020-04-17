@@ -1,10 +1,10 @@
-$button-size: 250px;
+@import '../../../stylesSettings/mixins';
+@import '../../../stylesSettings/variables';
 
 .click-button {
-  position: relative;
+  @include basic($button-size, $button-size);
 
-  width: $button-size;
-  height: $button-size;
+  position: relative;
 
   border: solid 2px #0A0908;
   border-radius: 50%;
@@ -43,10 +43,6 @@ $button-size: 250px;
   }
 
   &__text {
-    // display: flex;
-    // justify-content: center;
-    // align-items: center;
-
     position: absolute;
   
     top: 50%;
@@ -73,13 +69,12 @@ $button-size: 250px;
   }
 
   &__circle {
+    @include basic($button-size, $button-size);
+    
     position: absolute;
 
     top: 0;
     left: 0;
-
-    width: $button-size;
-    height: $button-size;
 
     background: #C6AC8F;
     border-radius: 50%;

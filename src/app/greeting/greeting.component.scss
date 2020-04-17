@@ -1,7 +1,7 @@
+@import '../../stylesSettings/mixins';
+
 .greeting {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include dis-flex-column(space-evenly, center);
 
   &__title {
     margin: 10px 0;

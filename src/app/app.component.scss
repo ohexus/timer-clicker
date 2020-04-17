@@ -1,3 +1,6 @@
+@import '../stylesSettings/fonts';
+@import '../stylesSettings/variables';
+
 .app {
   display: flex;
   flex-direction: column;
@@ -6,7 +9,9 @@
 
   background-color: #EAE0D5;
 
+  font-family: 'CircularStd-Book';
+
   &__content {
-    margin-top: 100px;
+    margin-top: $header-height;
   }
 }

@@ -1,9 +1,5 @@
-.game {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@import '../../stylesSettings/mixins';
 
-  &__speed {
-    margin: 5px 0;
-  }
+.game {
+  @include dis-flex-column(space-evenly, center);
 }

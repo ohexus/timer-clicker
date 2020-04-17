@@ -1,7 +1,7 @@
+@import '../../../stylesSettings/mixins';
+
 .score {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  @include dis-flex(space-evenly, center);
 
   height: 50px;
 
