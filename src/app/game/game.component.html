@@ -9,5 +9,5 @@
         : increaseClicks()">
   </app-click-button>
 
-  <app-timer (timerEndEvent)="finishGame()" (timerLengthEvent)="changeTimerLength($event)"></app-timer>
+  <app-timer (timerEndEvent)="finishGame()" (timerLengthChangeEvent)="changeTimerLength($event)"></app-timer>
 </div>
