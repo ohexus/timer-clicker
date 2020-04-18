@@ -37,15 +37,17 @@
   }
 
   &__title {
-    margin: 20px 0;
+    margin: 2rem 0;
 
     font-family: 'CircularStd-Medium';
 
     letter-spacing: 3px;
+
+    font-size: 3.6rem;
   }
 
   &__ask-name {
-    @include basic(0, 200px);
+    @include basic(0, 20rem);
     @include dis-flex-column(space-evenly, stretch);
 
     position: relative;
@@ -56,7 +58,7 @@
     transition: 0.3s;
 
     &--displayed {
-      height: 150px;
+      height: 15rem;
 
       opacity: 1;
 
@@ -65,11 +67,11 @@
   }
 
   &__label {
-    font-size: 26px;
+    font-size: 2.6rem;
   }
 
   &__input {
-    padding: 5px;
+    padding: 0.5rem;
 
     border: 0;
     border-bottom: 1px solid #EAE0D5;
@@ -80,7 +82,7 @@
     background-color: transparent;
     color: #EAE0D5;
 
-    font-size: 20px;
+    font-size: 2rem;
 
     transition: 0.3s;
 
@@ -93,17 +95,24 @@
   }
 
   &__button {
-    padding: 5px;
+    padding: 0.5rem;
 
     border: 0;
     border-radius: 2px;
 
     background-color: #EAE0D5;
+    opacity: 1;
 
     text-decoration: none;
     cursor: pointer;
 
-    font-size: 20px;
+    font-size: 2rem;
+
+    transition: 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
   }
 
   &__warning {
@@ -121,7 +130,7 @@
     transition: 0.2s ease-in-out;
 
     &--displayed {
-      height: 30px;
+      height: 3rem;
 
       opacity: 1;
     }

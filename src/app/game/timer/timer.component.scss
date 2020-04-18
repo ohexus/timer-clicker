@@ -3,6 +3,8 @@
 .timer {
   @include dis-flex-column(space-evenly, center);
 
+  font-size: 1.8rem;
+
   &__values,
   &__controls {
     display: flex;

@@ -4,10 +4,14 @@
   @include dis-flex-column(space-evenly, center);
 
   &__title {
-    margin: 10px 0;
+    margin: 1rem 0;
+    
+    font-size: 2.4rem;
   }
 
   &__game-description {
     margin: 0;
+    
+    font-size: 1.6rem;
   }
 }
