@@ -1,14 +1,59 @@
 @import '../../../stylesSettings/mixins';
+@import '../../../stylesSettings/variables';
 
 .score {
-  @include dis-flex(space-evenly, center);
+  @include basic($greeting-score-height, 100vw);
+  @include dis-flex(center, center);
 
-  height: 50px;
+  position: relative;
 
-  &__total,
+  overflow: hidden;
+
+  &__congratulations,
   &__average {
-    margin: 0 5px;
-
+    width: 100%;
     font-size: 1.8rem;
+    text-align: end;
+  }
+
+  &__average {
+    text-align: start;
+  }
+
+  &__total {
+    @include flex-center;
+
+    margin: 0 10px;
+    font-size: 2.5rem;
+    width: $score-total-width;
+  }
+
+  &::before,
+  &::after {
+    @include basic(inherit, calc(50% - #{$score-total-width}));
+    content: '';
+
+    position: absolute;
+    top: 0;
+
+    background-color: $game-background-color;
+
+    transition: 0.5s ease-out;
+  }
+  
+
+  &::before {
+    left: 0;
+  }
+
+  &::after {
+    right: 0;
+  }
+
+  &--show-congrats {
+    &::before,
+    &::after {
+      width: 0;
+    }
   }
 }

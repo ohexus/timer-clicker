@@ -1,6 +1,6 @@
 <div class="game">
-  <app-greeting></app-greeting>
-  <app-score [total]="totalClicks" [average]="averageClicks"></app-score>
+  <app-greeting [isGameFinished]="isGameFinished"></app-greeting>
+  <app-score [isGameFinished]="isGameFinished" [total]="totalClicks" [average]="averageClicks"></app-score>
 
   <app-click-button [clicksSpeed]="clicksSpeed" [isGameDelayed]="isGameDelayed" [isGameFinished]="isGameFinished"
     (click)="isGameDelayed 

@@ -9,12 +9,16 @@ import { UsernameService } from 'src/app/services/username-service/username.serv
 export class ScoreComponent implements OnInit {
   @Input() total: number
   @Input() average: number
+  @Input() isGameFinished: boolean
 
   username: string = ''
   
   constructor(private usernameService: UsernameService) {}
   
   ngOnInit() {
-    this.usernameService.getUsername().subscribe(username => this.username = username)
+    this.usernameService.getUsername().subscribe(username => {
+      this.username = username
+      this.isGameFinished = false
+    })
   }
 }

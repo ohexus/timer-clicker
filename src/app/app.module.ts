@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { GreetingComponent } from './greeting/greeting.component';
+import { GreetingComponent } from './game/greeting/greeting.component';
 import { GameComponent } from './game/game.component';
 import { ScoreComponent } from './game/score/score.component';
 import { ClickButtonComponent } from './game/click-button/click-button.component';

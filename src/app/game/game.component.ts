@@ -41,7 +41,6 @@ export class GameComponent {
 
   restartGame() {
     this.totalClicks = 0
-    this.averageClicks = 0
     this.isGameFinished = false
     this.startGame()
   }

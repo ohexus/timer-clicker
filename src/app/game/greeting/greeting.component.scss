@@ -1,0 +1,35 @@
+@import '../../../stylesSettings/mixins';
+@import '../../../stylesSettings/variables';
+
+.greeting {
+  @include basic($greeting-score-height, 100%);
+  @include dis-flex-column(space-evenly, center);
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  overflow: hidden;
+
+  background-color: $game-background-color;
+
+  z-index: 1;
+
+  &__title {
+    margin: 1rem 0;
+    
+    font-size: 2.4rem;
+  }
+
+  &__game-description {
+    margin: 0;
+    
+    font-size: 1.6rem;
+  }
+
+  &--hide {
+    height: 0;
+
+    transition: 0.2s ease-in-out;
+  }
+}

@@ -23,7 +23,7 @@
 
     position: absolute;
 
-    background-color: #0A0908;
+    background-color: $main-color;
 
     z-index: -1;
 
@@ -39,11 +39,12 @@
   &__title {
     margin: 2rem 0;
 
-    font-family: 'CircularStd-Medium';
+    font-family: 'CircularStd-Book';
+    font-family: 'Reem_Kufi';
 
     letter-spacing: 3px;
 
-    font-size: 3.6rem;
+    font-size: 4.6rem;
   }
 
   &__ask-name {
@@ -74,20 +75,20 @@
     padding: 0.5rem 1rem;
 
     border: 0;
-    border-bottom: 1px solid #EAE0D5;
+    border-bottom: 1px solid $secondary-color;
     box-sizing: border-box;
 
     outline: 0;
 
     background-color: transparent;
-    color: #EAE0D5;
+    color: $secondary-color;
 
     font-size: 2rem;
 
     transition: 0.3s;
 
     &::after {
-      background-color: #EAE0D5;
+      background-color: $secondary-color;
 
       opacity: 0;
 
@@ -97,7 +98,7 @@
     &:focus {
       border-radius: 2px;
 
-      color: #000000;
+      color: $main-color;
 
       &::after {
         opacity: 1;
@@ -111,14 +112,14 @@
     border: 0;
     border-radius: 1em;
 
-    background-color: #EAE0D5;
+    background-color: $secondary-color;
     opacity: 1;
 
     text-decoration: none;
     cursor: pointer;
 
     font-size: 2rem;
-    font-family: "CircularStd-Book";
+    font-family: 'Reem_Kufi';
 
     transition: 0.2s;
 
@@ -136,6 +137,7 @@
     right: 0;
 
     height: $header-height;
+    width: 100%;
 
     padding: 1.6rem 3.2rem;
 
@@ -143,11 +145,16 @@
     border: 0;
 
     background-color: transparent;
-    color: #EAE0D5;
+    color: $secondary-color;
 
     font-size: 1.8rem;
+    font-family: 'Reem_Kufi';
 
     cursor: pointer;
+
+    transition: 0.3s ease-in;
+
+    z-index: 1;
 
     &--fs-off {
       position: absolute;
@@ -155,24 +162,14 @@
       top: 0;
       right: 0;
 
-      width: 100%;
-
-      padding: 1.6rem 3.2rem;
-
-      outline: 0;
-
       opacity: 0;
 
-      transition: 0.3s ease-in;
-
-      background-color: transparent;
       color: transparent;
-
-      z-index: 1;
     }
 
     &--disabled {
       opacity: 0;
+
       cursor: none;
       pointer-events: none;
     }

@@ -15,7 +15,7 @@
   &__controls-splitter {
     width: 1px;
 
-    background-color: #0A0908;
+    background-color: $main-color;
   }
 
   &__increase,
@@ -40,23 +40,27 @@
     transition: 0.35s;
 
     &:hover:not([disabled]) {
-      background-color: #0A0908;
-      color: #EAE0D5;
+      background-color: $main-color;
+      color: $secondary-color;
       
       cursor: pointer;
     }
 
     &:active:not([disabled]) {
-      background-color: #22333B;
+      background-color: $button-active-color;
     }
   }
 
   &__increase {
     border-radius: 2.15rem 0 0 2.15rem;
+
+    font-family: 'Reem_Kufi', sans-serif;
   }
 
   &__decrease {
     border-radius: 0 2.15rem 2.15rem 0;
+
+    font-family: 'Reem_Kufi', sans-serif;
   }
 
   &__value {
@@ -70,7 +74,7 @@
     margin: 0;
 
     -webkit-appearance: none;
-    background-color: #0A0908;
+    background-color: $main-color;
 
     max-width: 95vw;
     height: 0.2rem;
