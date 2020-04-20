@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core'
+import { Component, ViewChild, Input } from '@angular/core'
 
 import { TimerComponent } from './timer/timer.component'
 import { ClickButtonComponent } from './click-button/click-button.component'
@@ -14,6 +14,8 @@ export class GameComponent {
   
   @ViewChild(ClickButtonComponent)
   private clickButton: ClickButtonComponent
+  
+  @Input() name: string
 
   totalClicks: number = 0
   averageClicks: number = 0

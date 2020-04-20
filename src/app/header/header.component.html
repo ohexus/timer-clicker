@@ -5,11 +5,17 @@
 
   <h1 class="header__title">{{ title }}</h1>
 
-  <div [ngClass]="['header__ask-name', fullscreen ? 'header__ask-name--displayed' : '']">
-    <label class="header__label" for="name">Enter your name:</label>
-    <input class="header__input" type="text" name="name" placeholder="Your name..." #newName />
+  <button [ngClass]="['header__fullscreen-button', fullscreen 
+    ? isInitScreen ? 'header__fullscreen-button--disabled' : ''
+    : 'header__fullscreen-button--fs-off'
+  ]" (click)="toggleFullscreen()" type="button"> Fullscreen </button>
 
-    <button class="header__button" type="button" (click)="checkName(newName.value)">Submit</button>
+  <div [ngClass]="['header__ask-name', fullscreen ? 'header__ask-name--displayed' : '']">
+
+    <label class="header__label" for="name">Enter your name:</label>
+    <input class="header__input" type="text" name="name" placeholder="Your name..." [(ngModel)]="username" />
+
+    <button class="header__button" type="button" (click)="checkName()">Submit</button>
 
     <div [ngClass]="['header__warning', isWarningShow ? 'header__warning--displayed' : '']">
       <p class="header__message">Please fill in the input field</p>

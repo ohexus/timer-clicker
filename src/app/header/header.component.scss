@@ -71,7 +71,7 @@
   }
 
   &__input {
-    padding: 0.5rem;
+    padding: 0.5rem 1rem;
 
     border: 0;
     border-bottom: 1px solid #EAE0D5;
@@ -86,11 +86,22 @@
 
     transition: 0.3s;
 
+    &::after {
+      background-color: #EAE0D5;
+
+      opacity: 0;
+
+      border-radius: 2px;
+    }
+
     &:focus {
       border-radius: 2px;
-      
-      background-color: #EAE0D5;
+
       color: #000000;
+
+      &::after {
+        opacity: 1;
+      }
     }
   }
 
@@ -98,7 +109,7 @@
     padding: 0.5rem;
 
     border: 0;
-    border-radius: 2px;
+    border-radius: 1em;
 
     background-color: #EAE0D5;
     opacity: 1;
@@ -107,11 +118,63 @@
     cursor: pointer;
 
     font-size: 2rem;
+    font-family: "CircularStd-Book";
 
     transition: 0.2s;
 
     &:hover {
       opacity: 0.9;
+    }
+  }
+
+  &__fullscreen-button {
+    @include dis-flex(flex-end, center);
+
+    position: fixed;
+
+    top: 0;
+    right: 0;
+
+    height: $header-height;
+
+    padding: 1.6rem 3.2rem;
+
+    outline: 0;
+    border: 0;
+
+    background-color: transparent;
+    color: #EAE0D5;
+
+    font-size: 1.8rem;
+
+    cursor: pointer;
+
+    &--fs-off {
+      position: absolute;
+
+      top: 0;
+      right: 0;
+
+      width: 100%;
+
+      padding: 1.6rem 3.2rem;
+
+      outline: 0;
+
+      opacity: 0;
+
+      transition: 0.3s ease-in;
+
+      background-color: transparent;
+      color: transparent;
+
+      z-index: 1;
+    }
+
+    &--disabled {
+      opacity: 0;
+      cursor: none;
+      pointer-events: none;
     }
   }
 
@@ -126,6 +189,8 @@
     opacity: 0;
 
     overflow: hidden;
+
+    font-size: 1.4rem;
 
     transition: 0.2s ease-in-out;
 
