@@ -5,10 +5,8 @@
 
   <h1 class="header__title">{{ title }}</h1>
 
-  <button [ngClass]="['header__fullscreen-button', fullscreen 
-    ? isInitScreen ? 'header__fullscreen-button--disabled' : ''
-    : 'header__fullscreen-button--fs-off'
-  ]" (click)="toggleFullscreen()" type="button"> Fullscreen </button>
+  <app-toggle-fullscreen-button className="header__fullscreen-button" buttonValue="Fullscreen" [isInitScreen]="isInitScreen"
+    (toggleFullscreenEvent)="toggleFullscreen()"></app-toggle-fullscreen-button>
 
   <div [ngClass]="['header__ask-name', fullscreen ? 'header__ask-name--displayed' : '']">
 

@@ -128,53 +128,6 @@
     }
   }
 
-  &__fullscreen-button {
-    @include dis-flex(flex-end, center);
-
-    position: fixed;
-
-    top: 0;
-    right: 0;
-
-    height: $header-height;
-    width: 100%;
-
-    padding: 1.6rem 3.2rem;
-
-    outline: 0;
-    border: 0;
-
-    background-color: transparent;
-    color: $secondary-color;
-
-    font-size: 1.8rem;
-    font-family: 'Reem_Kufi';
-
-    cursor: pointer;
-
-    transition: 0.3s ease-in;
-
-    z-index: 1;
-
-    &--fs-off {
-      position: absolute;
-
-      top: 0;
-      right: 0;
-
-      opacity: 0;
-
-      color: transparent;
-    }
-
-    &--disabled {
-      opacity: 0;
-
-      cursor: none;
-      pointer-events: none;
-    }
-  }
-
   &__warning {
     @include flex-center;
     @include basic(0, 100%);

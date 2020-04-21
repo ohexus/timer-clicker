@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core'
+import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core'
 import { UsernameService } from '../services/username-service/username.service'
+import { ToggleFullscreenButtonComponent } from '../toggle-fullscreen-button/toggle-fullscreen-button.component'
 
 @Component({
   selector: 'app-header',
@@ -7,6 +8,9 @@ import { UsernameService } from '../services/username-service/username.service'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
+  @ViewChild(ToggleFullscreenButtonComponent)
+  private fullscreenButton: ToggleFullscreenButtonComponent
+
   title: string = 'Timer Clicker Game'
   username: string = ''
 
@@ -41,5 +45,10 @@ export class HeaderComponent {
 
   toggleFullscreen() {
     this.fullscreen = !this.fullscreen
+
+    if (this.isInitScreen) {
+      this.isInitScreen = false
+      this.fullscreenButton.toggleFillHeaderStatus()
+    }
   }
 }

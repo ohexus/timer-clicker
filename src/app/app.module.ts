@@ -9,6 +9,8 @@ import { GameComponent } from './game/game.component';
 import { ScoreComponent } from './game/score/score.component';
 import { ClickButtonComponent } from './game/click-button/click-button.component';
 import { TimerComponent } from './game/timer/timer.component';
+import { HighscoreTableComponent } from './highscore-table/highscore-table.component';
+import { ToggleFullscreenButtonComponent } from './toggle-fullscreen-button/toggle-fullscreen-button.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TimerComponent } from './game/timer/timer.component';
     GameComponent,
     ScoreComponent,
     ClickButtonComponent,
-    TimerComponent
+    TimerComponent,
+    HighscoreTableComponent,
+    ToggleFullscreenButtonComponent
   ],
   imports: [
     BrowserModule,

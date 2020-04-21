@@ -1,0 +1,52 @@
+@import '../../stylesSettings/mixins';
+@import '../../stylesSettings/variables';
+@import '../../stylesSettings/animations';
+
+.fullscreen-button {
+  @include basic($header-height, 15rem);
+
+  position: absolute;
+  top: 0;
+
+  padding: 1.6rem 3.2rem;
+
+  outline: 0;
+  border: 0;
+
+  background-color: transparent;
+  color: $secondary-color;
+
+  font-size: 1.8rem;
+  font-family: 'Reem_Kufi';
+
+  cursor: pointer;
+
+  z-index: 1;
+
+  &--fill-header {
+    width: 100%;
+  }
+
+  &--disabled {
+    opacity: 0;
+
+    cursor: none;
+    pointer-events: none;
+  }
+
+  &:hover {
+    color: $secondary-color;
+
+    animation: text-blink 7s infinite;
+  }
+}
+
+.header__fullscreen-button {
+  right: 0;
+  text-align: end;
+}
+
+.highscore__fullscreen-button {
+  left: 0;
+  text-align: start;
+}
