@@ -1,4 +1,4 @@
-<div [ngClass]="['greeting', isShown && isGameFinished ? '' : 'greeting--hide']">
+<div [ngClass]="['greeting', isShown && isInitGame ? '' : 'greeting--hide']">
   <h2 class="greeting__title">Hello, {{ username }}</h2>
   <p class="greeting__game-description">Click on the button as fast as possible! First click starts the game.</p>
 </div>

@@ -11,6 +11,7 @@ import { ClickButtonComponent } from './game/click-button/click-button.component
 import { TimerComponent } from './game/timer/timer.component';
 import { HighscoreTableComponent } from './highscore-table/highscore-table.component';
 import { ToggleFullscreenButtonComponent } from './toggle-fullscreen-button/toggle-fullscreen-button.component';
+import { TimePipe } from './pipes/time/time.pipe';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ToggleFullscreenButtonComponent } from './toggle-fullscreen-button/togg
     ClickButtonComponent,
     TimerComponent,
     HighscoreTableComponent,
-    ToggleFullscreenButtonComponent
+    ToggleFullscreenButtonComponent,
+    TimePipe
   ],
   imports: [
     BrowserModule,

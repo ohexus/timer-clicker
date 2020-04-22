@@ -1,4 +1,7 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { SpeedService } from 'src/app/services/speed-service/speed.service';
+import { ClicksService } from 'src/app/services/clicks-service/clicks.service';
+import { GameService } from 'src/app/services/game-service/game.service';
 
 @Component({
   selector: 'app-click-button',
@@ -6,11 +9,46 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./click-button.component.scss']
 })
 export class ClickButtonComponent {
-  @Input() isGameDelayed: boolean
-  @Input() isGameFinished: boolean
-  @Input() clicksSpeed: number
+  isGameDelayed: boolean
+  isGameStarted: boolean
+
+  isInitGame: boolean
+
+  clicksSpeed: number
 
   circles: string[] = []
+
+  constructor(
+    private clicksService: ClicksService,
+    private speedService: SpeedService,
+    private gameService: GameService
+  ) {
+    this.gameService.getIsGameDelayed().subscribe(is => this.isGameDelayed = is)
+    this.gameService.getIsGameStarted().subscribe(is => {
+      this.isGameStarted = is
+    
+      if (is === false) {
+        this.destroyCircles()
+      }
+    })
+
+    this.gameService.getIsInitGame().subscribe(is => this.isInitGame = is)
+    
+    this.speedService.getSpeed().subscribe(speed => this.clicksSpeed = speed)
+  }
+
+  clickAction() {
+    if (!this.isGameDelayed || this.isInitGame) {
+      if (!this.isGameStarted) {
+        this.gameService.startGame()
+      }
+
+      this.clicksService.increaseClicks()
+      this.speedService.increaseClicks()
+
+      this.runCircle()
+    }
+  }
 
   runCircle() {
     this.circles.push('circle')

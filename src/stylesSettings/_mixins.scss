@@ -21,3 +21,9 @@
   justify-content: $justify-content;
   align-items: $align-items;
 }
+
+@mixin absolute-0-0 {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

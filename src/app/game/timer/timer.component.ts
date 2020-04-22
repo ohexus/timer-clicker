@@ -1,4 +1,5 @@
-import { Component, Output, EventEmitter, HostListener } from '@angular/core'
+import { Component, HostListener } from '@angular/core'
+import { TimerService } from 'src/app/services/timer-service/timer.service'
 
 @Component({
   selector: 'app-timer',
@@ -6,91 +7,87 @@ import { Component, Output, EventEmitter, HostListener } from '@angular/core'
   styleUrls: ['./timer.component.scss']
 })
 export class TimerComponent {
-  timerTotalLength: number = 10
-  timerCurrentValue: number = this.timerTotalLength
+  timerTotal: number
+  timerCurrent: number
 
   widthMultiplier: number = 2
-  timerWidth: string = `${this.timerTotalLength * this.widthMultiplier}rem`
+  timerWidth: string = `5rem`
+  timerStep: number = 0.1
 
   isTimerStarted: boolean = false
 
-  @Output() timerEndEvent = new EventEmitter()
-  @Output() timerLengthChangeEvent = new EventEmitter()
+  constructor(private timerService: TimerService) {
+    this.timerService.getTotalTime().subscribe(res => {
+      this.timerTotal = Number(res.toFixed(1))
+    })
+
+    this.timerService.getCurrentTime().subscribe(res => {
+      this.timerCurrent = Number(res.toFixed(1))
+      this.timerWidth = `${this.timerCurrent * this.widthMultiplier}rem`
+    })
+
+    this.timerService.getIsTimerStarted().subscribe(is => {
+      this.isTimerStarted = is
+    
+      if (is !== false) {
+        this.startTimerAnimation()
+      }
+    })
+  }
 
   @HostListener('window:keydown', ['$event'])
   keyEvent(event: KeyboardEvent) {
     if (!this.isTimerStarted) {
       const k = event.key
-  
+
       if (k === 'w' || k === 'd' || k === 'ArrowUp' || k === 'ArrowRight') {
         this.increaseTimerLength()
       }
-  
+
       if (k === 'a' || k === 's' || k === 'ArrowLeft' || k === 'ArrowDown') {
         this.decreaseTimerLength()
       }
     }
   }
 
-  emitTimerEnd() {
-    this.timerEndEvent.emit()
-    this.timerCurrentValue = this.timerTotalLength
-  }
-
-  emitTimerLengthChange() {
-    this.timerLengthChangeEvent.emit(this.timerTotalLength)
-  }
-
   increaseTimerLength() {
-    this.timerTotalLength++
+    this.timerService.increaseTimerLength()
 
-    this.timerCurrentValue = this.timerTotalLength
     this.changeTimerWidth()
-
-    this.emitTimerLengthChange()
   }
 
   decreaseTimerLength() {
-    if (this.timerTotalLength > 1) {
-      this.timerTotalLength--
+    if (this.timerTotal > 1) {
+      this.timerService.decreaseTimerLength()
 
-      this.timerCurrentValue = this.timerTotalLength
       this.changeTimerWidth()
-
-      this.emitTimerLengthChange()
     }
   }
 
-  startTimer() {
-    this.isTimerStarted = true
-    const timerStep: number = 0.1
+  // convertTime(timeInSeconds: number) {
+  //   const format = (num: number, size: number) => ('00' + num).slice(size * -1)
+  //   const minutes = Math.floor(timeInSeconds / 60) % 60
+  //   const seconds = Math.floor(timeInSeconds - minutes * 60)
 
+  //   return `${format(minutes, 2)}:${format(seconds, 2)}`
+  // }
+
+  startTimerAnimation() {
     let timerId = setInterval(() => {
-      this.timerCurrentValue -= timerStep
+      // correct time fix
+      this.timerCurrent = parseFloat((this.timerCurrent - this.timerStep).toFixed(2))
 
       this.changeTimerWidth()
 
-      if (this.timerCurrentValue < 0) {
-        this.isTimerStarted = false
-        this.timerWidth = this.multiplyTimerWidth(this.timerTotalLength).toString() + 'rem'
-
-        this.emitTimerEnd()
+      if (this.timerCurrent <= 0) {
         clearInterval(timerId)
       }
-    }, timerStep * 1000)
-  }
-
-  convertTime(timeInSeconds: number) {
-    const format = (num: number, size: number) => ('00' + num).slice(size * -1)
-    const minutes = Math.floor(timeInSeconds / 60) % 60
-    const seconds = Math.floor(timeInSeconds - minutes * 60)
-
-    return `${format(minutes, 2)}:${format(seconds, 2)}`
+    }, this.timerStep * 1000)
   }
 
   changeTimerWidth() {
-    this.timerWidth = this.multiplyTimerWidth(this.timerCurrentValue).toString() + 'rem'
+    this.timerWidth = this.multTimerWidth().toString() + 'rem'
   }
 
-  multiplyTimerWidth = (value) => value * this.widthMultiplier
+  multTimerWidth = () => this.timerCurrent * this.widthMultiplier
 }

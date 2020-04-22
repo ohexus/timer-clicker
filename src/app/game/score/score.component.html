@@ -1,4 +1,9 @@
-<div [ngClass]="['score', isGameFinished ? 'score--show-congrats' : '']">
+<div [ngClass]="['score', isGameStarted
+  ? ''
+  : isInitGame
+    ? '' 
+    : 'score--show-congrats'
+]">
   <h3 class="score__congratulations">Well done, {{ username }}! You've reached: </h3>
   <h3 class="score__total">{{ total }}</h3>
   <h3 class="score__average">Average Clicks per second: {{ average }}</h3>

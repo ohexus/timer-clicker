@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { GameService } from '../game-service/game.service';
 
 @Injectable({
   providedIn: 'root'
@@ -7,15 +8,19 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class UsernameService {
   username: BehaviorSubject<string>
 
-  constructor() {
+  constructor(private gameService: GameService) {
     this.username = new BehaviorSubject<string>('')
   }
 
   setUsername(newName: string) {
-    this.username.next(newName)
+    if (newName !== this.username.getValue()) {
+      this.username.next(newName)
+
+      this.gameService.restartGame()
+    }
   }
 
-  getUsername(): Observable<string>{
+  getUsername(): Observable<string> {
     return this.username.asObservable()
   }
 }

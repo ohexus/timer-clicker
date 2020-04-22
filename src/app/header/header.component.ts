@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, ViewChild } from '@angular/core'
 import { UsernameService } from '../services/username-service/username.service'
 import { ToggleFullscreenButtonComponent } from '../toggle-fullscreen-button/toggle-fullscreen-button.component'
+import { GameService } from '../services/game-service/game.service'
 
 @Component({
   selector: 'app-header',

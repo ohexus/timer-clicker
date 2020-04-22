@@ -31,3 +31,27 @@
     transform: scale(1);
   }
 }
+
+@keyframes text-blink {
+  0% {
+    color: $secondary-color;
+  }
+  26% {
+    color: transparent;
+  }
+  34% {
+    color: $secondary-color;
+  }
+  52% {
+    color: $secondary-color;
+  }
+  71% {
+    color: transparent;
+  }
+  83% {
+    color: $secondary-color;
+  }
+  100% {
+    color: $secondary-color;
+  }
+}

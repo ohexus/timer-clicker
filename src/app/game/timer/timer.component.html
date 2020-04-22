@@ -7,11 +7,11 @@
     <div class="timer__controls-splitter"></div>
 
     <button class="timer__decrease" (click)="decreaseTimerLength()" value='Decrease'
-      [disabled]="isTimerStarted || timerTotalLength <= 1">Decrease</button>
+      [disabled]="isTimerStarted || timerTotal <= 1">Decrease</button>
   </div>
 
   <div class="timer__value">
-    {{convertTime(timerCurrentValue)}}
+    {{ timerCurrent | time }}
   </div>
   <label for="range"></label>
   <input class="timer__range" name="range" type="range" min="0" max="1" disabled [ngStyle]="{'width': timerWidth}" />

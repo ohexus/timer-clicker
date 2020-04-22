@@ -1,13 +1,13 @@
-<div class="click-button" (click)="isGameDelayed ? null : runCircle()">
+<div class="click-button" (click)="!isGameDelayed || isInitGame ? clickAction() : null">
   <div class="click-button__list-wrapper">
     <ul class="click-button__list">
-      <li [ngClass]="['click-button__text', isGameDelayed ? 'click-button__text--displayed' : '']">
+      <li [ngClass]="['click-button__text', isGameDelayed && !isInitGame ? 'click-button__text--displayed' : '']">
         Game over!
       </li>
-      <li [ngClass]="['click-button__text', isGameFinished && !isGameDelayed ? 'click-button__text--displayed' : '']">
+      <li [ngClass]="['click-button__text', !isGameStarted && !isGameDelayed || isInitGame ? 'click-button__text--displayed' : '']">
         Start new game
       </li>
-      <li [ngClass]="['click-button__text', isGameFinished ? '' : 'click-button__text--displayed']">
+      <li [ngClass]="['click-button__text', isGameStarted ? 'click-button__text--displayed' : '']">
         {{ clicksSpeed }} c/s
       </li>
     </ul>
