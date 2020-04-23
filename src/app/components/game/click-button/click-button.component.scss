@@ -21,17 +21,15 @@
   user-select: none;
 
   &__list {
-    position: relative;
+    @include marpad-0-0;
 
-    margin: 0;
-    padding: 0;
+    position: relative;
 
     width: 100%;
 
     list-style: none;
 
     &-wrapper {
-
       position: absolute;
   
       top: 50%;
@@ -46,6 +44,8 @@
   }
 
   &__text {
+    @include marpad-0-0;
+    
     position: absolute;
   
     top: 50%;
@@ -53,8 +53,6 @@
 
     transform: translate(-50%, -50%) scale(0);
     opacity: 0;
-
-    margin: 0;
 
     width: max-content;
 

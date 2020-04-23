@@ -1,0 +1,35 @@
+@import '../../../../stylesSettings/mixins';
+@import '../../../../stylesSettings/variables';
+
+.panel {
+  @include basic($highscore-tile-height, 100%);
+  @include dis-flex(space-evenly, stretch);
+
+  &__button {
+    @include flex-center;
+    @include marpad-0-0;
+
+    width: 25%;
+
+    outline: 0;
+    border: 0;
+
+    background-color: transparent;
+    color: $secondary-color;
+
+    font-family: 'Reem_Kufi';
+    font-size: 2.5rem;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.05);
+    }
+
+    &:active {
+      background-color: rgba($secondary-color, 0.1);
+    }
+  }
+}

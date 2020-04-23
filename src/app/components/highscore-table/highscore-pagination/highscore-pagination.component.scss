@@ -1,0 +1,47 @@
+@import '../../../../stylesSettings/mixins';
+@import '../../../../stylesSettings/variables';
+
+.pagination {
+  @include basic($highscore-tile-height, 100%);
+  @include flex-center;
+
+  margin-bottom: 2rem;
+
+  font-family: 'Reem_Kufi';
+
+  &__title {
+    @include flex-center;
+    @include marpad-0-0;
+
+    width: 10rem;
+
+    font-size: 2.5rem;
+  }
+
+  &__button {
+    @include basic(3.5rem, 3.5rem);
+    @include flex-center;
+    @include marpad-0-0;
+
+    outline: 0;
+    border: 0;
+    border-radius: 50%;
+    
+    background-color: transparent;
+    color: #EAE0D5;
+
+    font-size: 3rem;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+
+    &:hover {
+      background-color: rgba($secondary-color, 0.05);
+    }
+
+    &:active {
+      background-color: rgba($secondary-color, 0.1);
+    }
+  }
+}

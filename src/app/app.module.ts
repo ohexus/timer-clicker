@@ -11,8 +11,13 @@ import { ClickButtonComponent } from './components/game/click-button/click-butto
 import { TimerComponent } from './components/game/timer/timer.component';
 import { HighscoreTableComponent } from './components/highscore-table/highscore-table.component';
 import { ToggleFullscreenButtonComponent } from './components/toggle-fullscreen-button/toggle-fullscreen-button.component';
+
 import { TimePipe } from './pipes/time/time.pipe';
 import { FilterHighscoresPipe } from './pipes/filter-highscores/filter-highscores.pipe';
+import { SortHighscoresPipe } from './pipes/sort-highscores/sort-highscores.pipe';
+import { HighscoreTileComponent } from './components/highscore-table/highscore-tile/highscore-tile.component';
+import { HighscoreSortPanelComponent } from './components/highscore-table/highscore-sort-panel/highscore-sort-panel.component';
+import { HighscorePaginationComponent } from './components/highscore-table/highscore-pagination/highscore-pagination.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +31,11 @@ import { FilterHighscoresPipe } from './pipes/filter-highscores/filter-highscore
     HighscoreTableComponent,
     ToggleFullscreenButtonComponent,
     TimePipe,
-    FilterHighscoresPipe
+    FilterHighscoresPipe,
+    SortHighscoresPipe,
+    HighscoreTileComponent,
+    HighscoreSortPanelComponent,
+    HighscorePaginationComponent,
   ],
   imports: [
     BrowserModule,

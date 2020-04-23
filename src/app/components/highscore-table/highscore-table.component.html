@@ -1,20 +1,21 @@
 <div [ngClass]="['highscore', fullscreen ? 'highscore--fullscreen' : '']">
-  <app-toggle-fullscreen-button 
-    className="highscore__fullscreen-button"
-    buttonValue="Highscores"
-    (toggleFullscreenEvent)="toggleFullscreen()"
-  ></app-toggle-fullscreen-button>
+  <app-toggle-fullscreen-button className="highscore__fullscreen-button" buttonValue="Highscores"
+    (toggleFullscreenEvent)="toggleFullscreen()">
+  </app-toggle-fullscreen-button>
 
   <div class="highscore__table">
+    <app-highscore-pagination (timeFilterEvent)="changeTimeFilter($event)"></app-highscore-pagination>
+
+    <app-highscore-sort-panel (sortCriteriaEvent)="changeSortCriteria($event)"
+      (isAscendingEvent)="changeIsAscending($event)">
+    </app-highscore-sort-panel>
+
     <ul class="highscore__list">
-      <li class="highscore__item" *ngFor="let score of highscoresArray">
-        <p>{{ score.counterTime }}</p>
-        <p>{{ score.owner }}</p>
-        <p>{{ score.total }}</p>
-        <p>{{ score.average }}</p>
-        <p>{{ score.highscoreReached }}</p>
-        <hr />
-      </li>
+      <app-highscore-tile *ngFor="let score of highscoresArray 
+        | filterHighscores: timeFilter
+        | sortHighscores: sortCriteria: isAscending" [owner]=score.owner [total]=score.total [average]=score.average
+        [reached]=score.reached>
+      </app-highscore-tile>
     </ul>
   </div>
 </div>

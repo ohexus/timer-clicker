@@ -1,0 +1,14 @@
+@import '../../../../stylesSettings/mixins';
+@import '../../../../stylesSettings/variables';
+
+.highscore {
+  @include basic($highscore-tile-height, 100%);
+  @include dis-flex(space-evenly, stretch);
+
+  &__item {
+    @include flex-center;
+    @include marpad-0-0;
+    
+    width: 25%;
+  }
+}

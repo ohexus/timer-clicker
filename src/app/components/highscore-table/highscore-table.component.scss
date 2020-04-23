@@ -7,8 +7,7 @@
 
   transition: 0.5s ease-in;
 
-  background-color: transparent;
-  // color: $secondary-color;
+  background-color: $main-color;
 
   overflow: hidden;
 
@@ -18,9 +17,8 @@
     @include basic(100vh, 100vw);
 
     position: fixed;
-    overflow-y: visible;
+    overflow-y: auto;
 
-    background-color: $main-color;
     color: $secondary-color;
   }
 
@@ -32,9 +30,13 @@
 
   &__table {
     margin-top: $header-height;
+
+    min-width: 100vw;
   }
 
   &__list {
+    @include marpad-0-0;
+
     list-style: none;
 
     font-size: 2rem;

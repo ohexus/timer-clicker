@@ -9,15 +9,30 @@ import { Highscore, HighscoreTableService } from '../../services/highscore-table
 export class HighscoreTableComponent {
   highscoresArray: Highscore[]
 
+  timeFilter: number = 10
+  sortCriteria: string = 'total'
+  isAscending: boolean = false
+
   fullscreen: boolean = false
 
   constructor(private highscoreTableService: HighscoreTableService) {
     this.highscoreTableService.getHighscores().subscribe(scores => this.highscoresArray = scores)
-
-    console.log(this.highscoresArray)
   }
 
   toggleFullscreen() {
     this.fullscreen = !this.fullscreen
   }
+
+  changeTimeFilter(value: number) {
+    this.timeFilter = value
+  }
+
+  changeSortCriteria(value: string) {
+    this.sortCriteria = value
+  }
+
+  changeIsAscending(value: boolean) {
+    this.isAscending = value
+  }
+
 }

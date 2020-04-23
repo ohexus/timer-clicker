@@ -8,8 +8,7 @@
 .header {
   @include basic($header-height, 100%);
   @include dis-flex-column(center, center);
-
-  position: absolute;
+  @include absolute-0-0;
 
   color: #EAE0D5;
 
