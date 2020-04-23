@@ -2,17 +2,19 @@
 @import '../../stylesSettings/variables';
 
 .highscore {
+  @include basic(0, 100vw);
   @include absolute-0-0;
+
+  transition: 1s ease-in;
 
   z-index: 100;
 
   &--fullscreen {
-    width: 100vw;
     height: 100vh;
 
-    background-color: $secondary-color;
+    background-color: $main-color;
   }
-  
+
   &__fullscreen-button {
     @include dis-flex(flex-start, center);
 

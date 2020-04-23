@@ -2,7 +2,7 @@
   <div class="click-button__list-wrapper">
     <ul class="click-button__list">
       <li [ngClass]="['click-button__text', isGameDelayed && !isInitGame ? 'click-button__text--displayed' : '']">
-        Game over!
+        Game Over!
       </li>
       <li [ngClass]="['click-button__text', !isGameStarted && !isGameDelayed || isInitGame ? 'click-button__text--displayed' : '']">
         Start new game

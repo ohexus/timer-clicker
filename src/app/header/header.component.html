@@ -3,7 +3,7 @@
     <div class="header__background-filter"></div>
   </div>
 
-  <h1 class="header__title">{{ title }}</h1>
+  <h1 class="header__title">{{ title | titlecase }}</h1>
 
   <app-toggle-fullscreen-button className="header__fullscreen-button" buttonValue="Fullscreen" [isInitScreen]="isInitScreen"
     (toggleFullscreenEvent)="toggleFullscreen()"></app-toggle-fullscreen-button>

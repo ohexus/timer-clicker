@@ -12,13 +12,15 @@ export class HeaderComponent {
   @ViewChild(ToggleFullscreenButtonComponent)
   private fullscreenButton: ToggleFullscreenButtonComponent
 
-  title: string = 'Timer Clicker Game'
+  title: string = 'timer clicker game'
   username: string = ''
 
   isWarningShow: boolean = false
   fullscreen:boolean = true
 
   isInitScreen: boolean = true
+
+  timerId: any
 
   constructor(private usernameService: UsernameService) {}
 
@@ -36,9 +38,11 @@ export class HeaderComponent {
       this.toggleFullscreen()
       this.isInitScreen = false
     } else {
+      clearTimeout(this.timerId)
+
       this.isWarningShow = true
 
-      setTimeout(() => {
+      this.timerId = setTimeout(() => {
         this.isWarningShow = false
       }, 3000)
     }
