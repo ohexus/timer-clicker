@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { UsernameService } from '../../services/username-service/username.service';
-import { GameService } from 'src/app/services/game-service/game.service';
+import { UsernameService } from '../../../services/username-service/username.service';
+import { GameService } from '../../../services/game-service/game.service';
 
 @Component({
   selector: 'app-greeting',

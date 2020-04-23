@@ -1,6 +1,6 @@
-@import '../../../stylesSettings/mixins';
-@import '../../../stylesSettings/variables';
-@import '../../../stylesSettings/animations';
+@import '../../../../stylesSettings/mixins';
+@import '../../../../stylesSettings/variables';
+@import '../../../../stylesSettings/animations';
 
 .click-button {
   @include basic($click-button-size, $click-button-size);

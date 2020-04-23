@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface Highscore {
   counterTime: number,
@@ -50,21 +51,22 @@ const defaultHighscores: Highscore[] = [
   providedIn: 'root'
 })
 export class HighscoreTableService {
-  scoresArray: Highscore[]
+  highscoresArray: BehaviorSubject<Highscore[]>
 
   constructor() {
-    this.scoresArray = this.sortTable(defaultHighscores)
-    console.log(this.scoresArray)
+    this.highscoresArray = new BehaviorSubject<Highscore[]>(this.sortTable(defaultHighscores))
+
+    console.log(this.highscoresArray.getValue())
   }
 
   addHighscore(item: Highscore) {
-    this.scoresArray = this.sortTable([...this.scoresArray, item])
+    this.highscoresArray.next(this.sortTable([...this.highscoresArray.getValue(), item]))
 
-    console.log(this.scoresArray)
+    console.log(item)
+    console.log(this.highscoresArray.getValue())
   }
 
   sortTable(array: Highscore[]) {
-    console.log(array)
     return array.sort((a, b) => {
       if (a.counterTime === b.counterTime) {
         return a.total > b.total ? 1 : -1
@@ -72,6 +74,10 @@ export class HighscoreTableService {
         return a.counterTime > b.counterTime ? 1 : -1
       }
     })
+  }
+
+  getHighscores(): Observable<Highscore[]> {
+    return this.highscoresArray.asObservable()
   }
 
 }

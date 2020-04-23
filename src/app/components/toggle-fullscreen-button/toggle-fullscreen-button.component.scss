@@ -1,9 +1,9 @@
-@import '../../stylesSettings/mixins';
-@import '../../stylesSettings/variables';
-@import '../../stylesSettings/animations';
+@import '../../../stylesSettings/mixins';
+@import '../../../stylesSettings/variables';
+@import '../../../stylesSettings/animations';
 
 .fullscreen-button {
-  @include basic($header-height, 15rem);
+  @include basic($header-height, $fullscreen-button-width);
 
   position: absolute;
   top: 0;

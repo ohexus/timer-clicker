@@ -1,0 +1,42 @@
+@import '../../../stylesSettings/mixins';
+@import '../../../stylesSettings/variables';
+
+.highscore {
+  @include basic($header-height, $fullscreen-button-width);
+  @include absolute-0-0;
+
+  transition: 0.5s ease-in;
+
+  background-color: transparent;
+  // color: $secondary-color;
+
+  overflow: hidden;
+
+  z-index: 100;
+
+  &--fullscreen {
+    @include basic(100vh, 100vw);
+
+    position: fixed;
+    overflow-y: visible;
+
+    background-color: $main-color;
+    color: $secondary-color;
+  }
+
+  &__fullscreen-button {
+    @include dis-flex(flex-start, center);
+
+    left: 0;
+  }
+
+  &__table {
+    margin-top: $header-height;
+  }
+
+  &__list {
+    list-style: none;
+
+    font-size: 2rem;
+  }
+}

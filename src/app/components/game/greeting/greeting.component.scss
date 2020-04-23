@@ -1,5 +1,5 @@
-@import '../../../stylesSettings/mixins';
-@import '../../../stylesSettings/variables';
+@import '../../../../stylesSettings/mixins';
+@import '../../../../stylesSettings/variables';
 
 .greeting {
   @include basic($greeting-score-height, 100%);

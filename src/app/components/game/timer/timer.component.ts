@@ -1,5 +1,5 @@
 import { Component, HostListener } from '@angular/core'
-import { TimerService } from 'src/app/services/timer-service/timer.service'
+import { TimerService } from '../../../services/timer-service/timer.service'
 
 @Component({
   selector: 'app-timer',

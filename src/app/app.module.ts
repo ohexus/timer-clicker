@@ -3,15 +3,16 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { GreetingComponent } from './game/greeting/greeting.component';
-import { GameComponent } from './game/game.component';
-import { ScoreComponent } from './game/score/score.component';
-import { ClickButtonComponent } from './game/click-button/click-button.component';
-import { TimerComponent } from './game/timer/timer.component';
-import { HighscoreTableComponent } from './highscore-table/highscore-table.component';
-import { ToggleFullscreenButtonComponent } from './toggle-fullscreen-button/toggle-fullscreen-button.component';
+import { HeaderComponent } from './components/header/header.component';
+import { GreetingComponent } from './components/game/greeting/greeting.component';
+import { GameComponent } from './components/game/game.component';
+import { ScoreComponent } from './components/game/score/score.component';
+import { ClickButtonComponent } from './components/game/click-button/click-button.component';
+import { TimerComponent } from './components/game/timer/timer.component';
+import { HighscoreTableComponent } from './components/highscore-table/highscore-table.component';
+import { ToggleFullscreenButtonComponent } from './components/toggle-fullscreen-button/toggle-fullscreen-button.component';
 import { TimePipe } from './pipes/time/time.pipe';
+import { FilterHighscoresPipe } from './pipes/filter-highscores/filter-highscores.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TimePipe } from './pipes/time/time.pipe';
     TimerComponent,
     HighscoreTableComponent,
     ToggleFullscreenButtonComponent,
-    TimePipe
+    TimePipe,
+    FilterHighscoresPipe
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { SpeedService } from 'src/app/services/speed-service/speed.service';
-import { ClicksService } from 'src/app/services/clicks-service/clicks.service';
-import { GameService } from 'src/app/services/game-service/game.service';
+import { SpeedService } from '../../../services/speed-service/speed.service';
+import { ClicksService } from '../../../services/clicks-service/clicks.service';
+import { GameService } from '../../../services/game-service/game.service';
 
 @Component({
   selector: 'app-click-button',

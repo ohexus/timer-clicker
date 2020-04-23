@@ -1,5 +1,5 @@
-@import '../../../stylesSettings/mixins';
-@import '../../../stylesSettings/variables';
+@import '../../../../stylesSettings/mixins';
+@import '../../../../stylesSettings/variables';
 
 .timer {
   @include dis-flex-column(space-evenly, center);
