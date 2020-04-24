@@ -3,6 +3,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { TimerService } from '../timer-service/timer.service';
 import { ClicksService } from '../clicks-service/clicks.service';
 import { SpeedService } from '../speed-service/speed.service';
+import { HighscoreTableService, Highscore } from '../highscore-table-service/highscore-table.service';
+import { UsernameService } from '../username-service/username.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +15,18 @@ export class GameService {
 
   isInitGame: BehaviorSubject<boolean>
 
+  // highscore values
+  counterTime: number
+  owner: string
+  total: number
+  average: number
+
   constructor(
     private timerService: TimerService,
     private clicksService: ClicksService,
-    private speedService: SpeedService
+    private speedService: SpeedService,
+    private usernameService: UsernameService,
+    private highscoreService: HighscoreTableService
   ) {
     this.isGameStarted = new BehaviorSubject<boolean>(false)
     this.isGameDelayed = new BehaviorSubject<boolean>(false)
@@ -28,6 +38,16 @@ export class GameService {
         this.finishGame()
       }
     })
+
+    this.timerService.getTotalTime().subscribe(time => this.counterTime = time)
+    this.clicksService.getTotalClicks().subscribe(total => this.total = total)
+    this.clicksService.getAverageClicks().subscribe(average => this.average = average)
+    
+    this.usernameService.getUsername().subscribe(username => {
+      this.owner = username
+
+      this.restartGame()
+    })
   }
 
   startGame() {
@@ -35,7 +55,7 @@ export class GameService {
 
     this.speedService.startCalculateSpeed()
     this.timerService.startTimer()
-    
+
     this.isGameStarted.next(true)
     this.isGameDelayed.next(false)
     this.isInitGame.next(false)
@@ -49,6 +69,8 @@ export class GameService {
     this.isGameStarted.next(false)
     this.toggleTimeoutGameDelay()
     this.isInitGame.next(false)
+
+    this.checkScore()
   }
 
   restartGame() {
@@ -57,6 +79,18 @@ export class GameService {
     this.isGameStarted.next(false)
     this.isGameDelayed.next(false)
     this.isInitGame.next(true)
+  }
+
+  checkScore() {
+    const newHighscore: Highscore = {
+      counterTime: this.counterTime,
+      owner: this.owner,
+      total: this.total,
+      average: this.average,
+      reached: new Date
+    }
+
+    this.highscoreService.checkPlayersScore(newHighscore)
   }
 
   toggleTimeoutGameDelay() {

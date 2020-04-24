@@ -54,16 +54,51 @@ export class HighscoreTableService {
   highscoresArray: BehaviorSubject<Highscore[]>
 
   constructor() {
-    this.highscoresArray = new BehaviorSubject<Highscore[]>(defaultHighscores)
+    const localHighscores: Highscore[] = this.getLocalHighscores()
 
-    console.log(this.highscoresArray.getValue())
+    this.highscoresArray = new BehaviorSubject<Highscore[]>([...defaultHighscores, ...localHighscores])
   }
 
-  addHighscore(item: Highscore) {
-    this.highscoresArray.next([...this.highscoresArray.getValue(), item])
+  getLocalHighscores(): Highscore[] {
+    return JSON.parse(localStorage.getItem('localHighscores')) || []
+  }
 
-    console.log(item)
-    console.log(this.highscoresArray.getValue())
+  addHighscore(newHighscore: Highscore) {
+    this.highscoresArray.next([...this.highscoresArray.getValue(), newHighscore])
+
+    const localHighscores: Highscore[] = this.getLocalHighscores()
+
+    if (localHighscores) {
+      localStorage.setItem('localHighscores', JSON.stringify([...localHighscores, newHighscore]))
+    }
+  }
+
+  changeHighscore(newHighscore: Highscore) {
+    this.highscoresArray.next(this.highscoresArray.getValue().map(score => {
+      if (score.owner === newHighscore.owner && score.counterTime === newHighscore.counterTime) {
+        return newHighscore
+      }
+      return score
+    }))
+
+    localStorage.setItem('localHighscores', JSON.stringify(this.highscoresArray.getValue()))
+  }
+
+  checkPlayersScore(newHighscore: Highscore) {
+
+    if (newHighscore.owner !== '') {
+      const playerHighscoreByCurrentTime = this.highscoresArray.getValue()
+        .filter(score => score.owner === newHighscore.owner)
+        .find(score => score.counterTime === newHighscore.counterTime)
+  
+      if (playerHighscoreByCurrentTime) {
+        if (newHighscore.total > playerHighscoreByCurrentTime.total) {
+          this.changeHighscore(newHighscore)
+        }
+      } else {
+        this.addHighscore(newHighscore)
+      }
+    }
   }
 
   getHighscores(): Observable<Highscore[]> {

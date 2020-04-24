@@ -13,8 +13,11 @@
     <ul class="highscore__list">
       <app-highscore-tile *ngFor="let score of highscoresArray 
         | filterHighscores: timeFilter
-        | sortHighscores: sortCriteria: isAscending" [owner]=score.owner [total]=score.total [average]=score.average
-        [reached]=score.reached>
+        | sortHighscores: sortCriteria: isAscending" 
+      [owner]=score.owner
+      [total]=score.total
+      [average]=score.average
+      [reached]=score.reached>
       </app-highscore-tile>
     </ul>
   </div>

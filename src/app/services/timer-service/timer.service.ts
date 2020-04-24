@@ -1,9 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { SpeedService } from '../speed-service/speed.service';
-import { ClicksService } from '../clicks-service/clicks.service';
-import { GameService } from '../game-service/game.service';
-
 
 @Injectable({
   providedIn: 'root'
