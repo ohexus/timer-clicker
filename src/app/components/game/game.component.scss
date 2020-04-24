@@ -3,6 +3,4 @@
 
 .game {
   @include dis-flex-column(space-evenly, center);
-
-  margin-top: $header-height;
 }

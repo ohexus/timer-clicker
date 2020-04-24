@@ -64,14 +64,6 @@ export class TimerComponent {
     }
   }
 
-  // convertTime(timeInSeconds: number) {
-  //   const format = (num: number, size: number) => ('00' + num).slice(size * -1)
-  //   const minutes = Math.floor(timeInSeconds / 60) % 60
-  //   const seconds = Math.floor(timeInSeconds - minutes * 60)
-
-  //   return `${format(minutes, 2)}:${format(seconds, 2)}`
-  // }
-
   startTimerAnimation() {
     let timerId = setInterval(() => {
       // correct time fix

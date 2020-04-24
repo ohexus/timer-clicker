@@ -1,0 +1,19 @@
+<div class="main">
+  <div class="main__background">
+    <div class="main__background-filter"></div>
+  </div>
+
+  <app-header [isMainScreen]="true"></app-header>
+
+  <div class="main__ask-name">
+
+    <label class="main__label" for="name">Enter your name:</label>
+    <input class="main__input" type="text" name="name" placeholder="Your name..." [(ngModel)]="username" />
+
+    <button class="main__button" type="button" (click)="checkName()">Submit</button>
+
+    <div [ngClass]="['main__warning', isWarningShow ? 'main__warning--displayed' : '']">
+      <p class="header__message">Please fill in the input field</p>
+    </div>
+  </div>
+</div>

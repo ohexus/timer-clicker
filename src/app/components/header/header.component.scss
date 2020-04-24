@@ -1,41 +1,62 @@
 @import '../../../stylesSettings/mixins';
 @import '../../../stylesSettings/variables';
 
-:host {
-  position: relative;
-}
+// :host {
+//   position: relative;
+// }
 
 .header {
-  @include basic($header-height, 100%);
-  @include dis-flex-column(center, center);
-  @include absolute-0-0;
+  @include basic($header-height, 100vw);
 
-  color: #EAE0D5;
+  &--main {
+    .header__panel {
+      @include dis-flex-column(center, center);
+    }
+  }
 
-  transition: 0.75s ease;
-  overflow: hidden;
+  &--game {
+    .header__background {
+      @include basic($header-height, 100%);
+      @include absolute-0-0;
 
-  z-index: 10;
+      background-color: $main-color;
+      
+      z-index: 1;
+
+      &-filter {
+        @include basic(inherit, inherit);
+
+        background: linear-gradient(163deg, rgba(39, 37, 34, 0) 0%, rgba(39, 37, 34, 0.25) 100%);
+
+        z-index: 1;
+      }
+    }
+  }
 
   &__background {
-    @include basic(100vh, 100vw);
-    @include absolute-0-0;
-
-    background-color: $main-color;
-
-    z-index: -1;
+    background-color: transparent;
 
     &-filter {
-      @include basic(inherit, inherit);
-
-      background: linear-gradient(163deg, rgba(39, 37, 34, 0) 0%, rgba(39, 37, 34, 0.25) 100%);
-
-      z-index: 1;
+      background: transparent;
     }
+  }
+
+  &__panel {
+    @include basic(100%, 100%);
+    @include dis-flex(space-between, center);
+
+    color: $secondary-color;
+
+    transition: 0.75s ease;
+    overflow: hidden;
+
+    z-index: 10;
   }
 
   &__title {
     margin: 2rem 0;
+
+    color: $game-background-color;
 
     font-family: 'CircularStd-Book';
     font-family: 'Reem_Kufi';
@@ -43,127 +64,7 @@
     letter-spacing: 3px;
 
     font-size: 4.6rem;
-  }
 
-  &__ask-name {
-    @include basic(0, 20rem);
-    @include dis-flex-column(space-evenly, stretch);
-
-    position: relative;
-
-    opacity: 0;
-    overflow: hidden;
-
-    transition: 0.3s;
-
-    &--displayed {
-      height: 15rem;
-
-      opacity: 1;
-
-      overflow: visible;
-    }
-  }
-
-  &__label {
-    font-size: 2.6rem;
-  }
-
-  &__input {
-    padding: 0.5rem 1rem;
-
-    border: 0;
-    border-bottom: 1px solid $secondary-color;
-    box-sizing: border-box;
-
-    outline: 0;
-
-    background-color: transparent;
-    color: $secondary-color;
-
-    font-size: 2rem;
-
-    transition: 0.3s;
-
-    &::after {
-      background-color: $secondary-color;
-
-      opacity: 0;
-
-      border-radius: 2px;
-    }
-
-    &:focus {
-      border-radius: 2px;
-
-      color: $main-color;
-
-      &::after {
-        opacity: 1;
-      }
-    }
-  }
-
-  &__button {
-    padding: 0.5rem;
-
-    outline: 0;
-    border: 0;
-    border-radius: 1em;
-
-    background-color: $secondary-color;
-    opacity: 1;
-
-    text-decoration: none;
-    cursor: pointer;
-
-    font-size: 2rem;
-    font-family: 'Reem_Kufi';
-
-    transition: 0.2s;
-
-    &:hover {
-      opacity: 0.9;
-    }
-
-    &:active {
-      opacity: 0.8;
-    }
-  }
-
-  &__warning {
-    @include flex-center;
-    @include basic(0, 100%);
-
-    position: absolute;
-
-    top: 100%;
-
-    opacity: 0;
-
-    overflow: hidden;
-
-    font-size: 1.4rem;
-
-    transition: 0.2s ease-in-out;
-
-    &--displayed {
-      height: 3rem;
-
-      opacity: 1;
-    }
-  }
-
-  &__message {
-    margin: 0;
-  }
-
-  &--fullscreen {
-    @include basic(100vh, 100vw);
-
-    position: fixed;
-
-    top: 0;
-    left: 0;
+    z-index: 1;
   }
 }

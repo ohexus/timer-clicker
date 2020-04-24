@@ -1,22 +1,17 @@
-<header [ngClass]="['header', fullscreen ? 'header--fullscreen' : '']">
+<header [ngClass]="['header', isGameScreen ? 'header--game' : '', isMainScreen ? 'header--main' : '']">
   <div class="header__background">
     <div class="header__background-filter"></div>
   </div>
 
-  <h1 class="header__title">{{ title | titlecase }}</h1>
+  <div class="header__panel">
+    <app-header-button-link [disabled]="username === ''" [isAbsoluteLeft]="isMainScreen" buttonValue="Highscores"
+    routeLink="/highscores" (click)="RouteLinkAction()">
+    </app-header-button-link>
 
-  <app-toggle-fullscreen-button className="header__fullscreen-button" buttonValue="Fullscreen" [isInitScreen]="isInitScreen"
-    (toggleFullscreenEvent)="toggleFullscreen()"></app-toggle-fullscreen-button>
+    <h1 class="header__title">{{ title | titlecase }}</h1>
 
-  <div [ngClass]="['header__ask-name', fullscreen ? 'header__ask-name--displayed' : '']">
-
-    <label class="header__label" for="name">Enter your name:</label>
-    <input class="header__input" type="text" name="name" placeholder="Your name..." [(ngModel)]="username" />
-
-    <button class="header__button" type="button" (click)="checkName()">Submit</button>
-
-    <div [ngClass]="['header__warning', isWarningShow ? 'header__warning--displayed' : '']">
-      <p class="header__message">Please fill in the input field</p>
-    </div>
+    <app-header-button-link [disabled]="isMainScreen && username === ''" [isAbsoluteRight]="isMainScreen" buttonValue="MainScreen"
+      routeLink="{{isMainScreen ? '/game' : '/'}}">
+    </app-header-button-link>
   </div>
 </header>

@@ -2,13 +2,11 @@
 @import '../../../stylesSettings/variables';
 @import '../../../stylesSettings/animations';
 
-.fullscreen-button {
+.header-button-link {
   @include basic($header-height, $fullscreen-button-width);
+  @include flex-center;
 
-  position: absolute;
-  top: 0;
-
-  padding: 1.6rem 3.2rem;
+  position: relative;
 
   outline: 0;
   border: 0;
@@ -21,11 +19,7 @@
 
   cursor: pointer;
 
-  z-index: 1;
-
-  &--fill-header {
-    width: 100%;
-  }
+  z-index: 100;
 
   &--disabled {
     opacity: 0;
@@ -39,14 +33,22 @@
 
     animation: text-blink 7s infinite;
   }
-}
 
-.header__fullscreen-button {
-  right: 0;
-  text-align: end;
-}
+  &:disabled {
+    opacity: 0;
+    pointer-events: none;
+    cursor: none;
+  }
 
-.highscore__fullscreen-button {
-  left: 0;
-  text-align: start;
+  &--left {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &--right {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }

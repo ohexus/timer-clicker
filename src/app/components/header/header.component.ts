@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core'
-import { UsernameService } from '../../services/username-service/username.service'
-import { ToggleFullscreenButtonComponent } from '../toggle-fullscreen-button/toggle-fullscreen-button.component'
+import { Component, Input } from '@angular/core'
+import { clickerTitle } from '../../consts/consts'
+import { UsernameService } from 'src/app/services/username-service/username.service'
+import { Location } from '@angular/common'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-header',
@@ -8,51 +10,24 @@ import { ToggleFullscreenButtonComponent } from '../toggle-fullscreen-button/tog
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  @ViewChild(ToggleFullscreenButtonComponent)
-  private fullscreenButton: ToggleFullscreenButtonComponent
+  title: string
+  username: string
 
-  title: string = 'timer clicker game'
-  username: string = ''
+  @Input() isGameScreen: boolean
+  @Input() isMainScreen: boolean
 
-  isWarningShow: boolean = false
-  fullscreen:boolean = true
+  constructor(
+    private usernameService: UsernameService,
+    private router: Router
+  ) {
+    this.title = clickerTitle
 
-  isInitScreen: boolean = true
-
-  timerId: any
-
-  constructor(private usernameService: UsernameService) {}
-
-  emitNewName(name: string) {
-    this.usernameService.setUsername(name)
-    this.username = ''
+    this.usernameService.getUsername().subscribe(username => this.username = username)
   }
 
-  checkName() {
-    const name = this.username.trim()
-
-    if (name) {
-      this.emitNewName(name)
-
-      this.toggleFullscreen()
-      this.isInitScreen = false
-    } else {
-      clearTimeout(this.timerId)
-
-      this.isWarningShow = true
-
-      this.timerId = setTimeout(() => {
-        this.isWarningShow = false
-      }, 3000)
-    }
-  }
-
-  toggleFullscreen() {
-    this.fullscreen = !this.fullscreen
-
-    if (this.isInitScreen) {
-      this.isInitScreen = false
-      this.fullscreenButton.toggleFillHeaderStatus()
+  RouteLinkAction() {
+    if (this.username !== '' && !this.isMainScreen) {
+      this.router.navigate(['/game'])
     }
   }
 }

@@ -1,0 +1,3 @@
+<button
+  [ngClass]="['header-button-link', isAbsoluteLeft ? 'header-button-link--left' : '', isAbsoluteRight ? 'header-button-link--right' : '']"
+  type="button" [disabled]="disabled" (click)="buttonAction()"> {{ buttonValue }} </button>

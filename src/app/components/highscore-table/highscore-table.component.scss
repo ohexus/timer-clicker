@@ -2,36 +2,20 @@
 @import '../../../stylesSettings/variables';
 
 .highscore {
-  @include basic($header-height, $fullscreen-button-width);
-  @include absolute-0-0;
+  @include basic(100vh, 100vw);
+  position: fixed;
 
   transition: 0.5s ease-in;
 
   background-color: $main-color;
+  color: $secondary-color;
 
   overflow: hidden;
 
   z-index: 100;
 
-  &--fullscreen {
-    @include basic(100vh, 100vw);
-
-    position: fixed;
-    overflow-y: auto;
-
-    color: $secondary-color;
-  }
-
-  &__fullscreen-button {
-    @include dis-flex(flex-start, center);
-
-    left: 0;
-  }
-
   &__table {
-    margin-top: $header-height;
-
-    min-width: 100vw;
+    @include basic(100%, 100%);
   }
 
   &__list {
