@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -20,13 +20,6 @@ import { HighscoreTileComponent } from './components/highscore-table/highscore-t
 import { HighscoreSortPanelComponent } from './components/highscore-table/highscore-sort-panel/highscore-sort-panel.component';
 import { HighscorePaginationComponent } from './components/highscore-table/highscore-pagination/highscore-pagination.component';
 import { MainComponent } from './components/main/main.component';
-
-const appRoutes: Routes = [
-  { path: '', component: MainComponent },
-  { path: 'game', component: GameComponent },
-  { path: 'highscores', component: HighscoreTableComponent },
-  { path: '**', component: GameComponent } // NotFoundComponent
-];
 
 @NgModule({
   declarations: [
@@ -50,7 +43,7 @@ const appRoutes: Routes = [
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot(appRoutes)
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
