@@ -7,7 +7,7 @@ import { Highscore } from '../../services/highscore-table-service/highscore-tabl
 export class FilterHighscoresPipe implements PipeTransform {
 
   transform(highscores: Highscore[], timeInSeconds: number): Highscore[] {
-    return highscores.filter(h => h.counterTime === timeInSeconds)
+    return highscores.filter(h => h.counterTime === timeInSeconds);
   }
 
 }

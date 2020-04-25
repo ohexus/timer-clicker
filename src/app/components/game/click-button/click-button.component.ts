@@ -9,55 +9,55 @@ import { GameService } from '../../../services/game-service/game.service';
   styleUrls: ['./click-button.component.scss']
 })
 export class ClickButtonComponent {
-  isGameDelayed: boolean
-  isGameStarted: boolean
+  isGameDelayed: boolean;
+  isGameStarted: boolean;
 
-  isInitGame: boolean
+  isInitGame: boolean;
 
-  clicksSpeed: number
+  clicksSpeed: number;
 
-  circles: string[] = []
+  circles: string[] = [];
 
   constructor(
     private clicksService: ClicksService,
     private speedService: SpeedService,
     private gameService: GameService
   ) {
-    this.gameService.getIsGameDelayed().subscribe(is => this.isGameDelayed = is)
+    this.gameService.getIsGameDelayed().subscribe(is => this.isGameDelayed = is);
     this.gameService.getIsGameStarted().subscribe(is => {
-      this.isGameStarted = is
-    
-      if (is === false) {
-        this.destroyCircles()
-      }
-    })
+      this.isGameStarted = is;
 
-    this.gameService.getIsInitGame().subscribe(is => this.isInitGame = is)
-    
-    this.speedService.getSpeed().subscribe(speed => this.clicksSpeed = speed)
+      if (is === false) {
+        this.destroyCircles();
+      }
+    });
+
+    this.gameService.getIsInitGame().subscribe(is => this.isInitGame = is);
+
+    this.speedService.getSpeed().subscribe(speed => this.clicksSpeed = speed);
   }
 
   clickAction() {
     if (!this.isGameDelayed || this.isInitGame) {
       if (!this.isGameStarted) {
-        this.gameService.startGame()
+        this.gameService.startGame();
       }
 
-      this.clicksService.increaseClicks()
-      this.speedService.increaseClicks()
+      this.clicksService.increaseClicks();
+      this.speedService.increaseClicks();
 
-      this.runCircle()
+      this.runCircle();
     }
   }
 
   runCircle() {
-    this.circles.push('circle')
+    this.circles.push('circle');
   }
 
   destroyCircles() {
     // wait for last circle animation end
     setTimeout(() => {
-      this.circles = []
-    }, 1250)
+      this.circles = [];
+    }, 1250);
   }
 }

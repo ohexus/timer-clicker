@@ -7,15 +7,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./header-button-link.component.scss']
 })
 export class HeaderButtonLinkComponent {
-  @Input() buttonValue: string
-  @Input() routeLink: string
-  @Input() isAbsoluteLeft: boolean
-  @Input() isAbsoluteRight: boolean
-  @Input() disabled: boolean
+  @Input() buttonValue: string;
+  @Input() routeLink: string;
+  @Input() isAbsoluteLeft: boolean;
+  @Input() isAbsoluteRight: boolean;
+  @Input() disabled: boolean;
 
   constructor(private router: Router) { }
 
   buttonAction() {
-    this.router.navigate([this.routeLink])
+    this.router.navigate([this.routeLink]);
   }
 }

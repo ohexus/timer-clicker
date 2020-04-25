@@ -10,16 +10,16 @@ import { UsernameService } from '../username-service/username.service';
   providedIn: 'root'
 })
 export class GameService {
-  isGameStarted: BehaviorSubject<boolean>
-  isGameDelayed: BehaviorSubject<boolean>
+  isGameStarted: BehaviorSubject<boolean>;
+  isGameDelayed: BehaviorSubject<boolean>;
 
-  isInitGame: BehaviorSubject<boolean>
+  isInitGame: BehaviorSubject<boolean>;
 
   // highscore values
-  counterTime: number
-  owner: string
-  total: number
-  average: number
+  counterTime: number;
+  owner: string;
+  total: number;
+  average: number;
 
   constructor(
     private timerService: TimerService,
@@ -28,85 +28,87 @@ export class GameService {
     private usernameService: UsernameService,
     private highscoreService: HighscoreTableService
   ) {
-    this.isGameStarted = new BehaviorSubject<boolean>(false)
-    this.isGameDelayed = new BehaviorSubject<boolean>(false)
+    this.isGameStarted = new BehaviorSubject<boolean>(false);
+    this.isGameDelayed = new BehaviorSubject<boolean>(false);
 
-    this.isInitGame = new BehaviorSubject<boolean>(true)
+    this.isInitGame = new BehaviorSubject<boolean>(true);
 
     this.timerService.getIsTimerStarted().subscribe(is => {
       if (is === false) {
-        this.finishGame()
+        this.finishGame();
       }
-    })
+    });
 
-    this.timerService.getTotalTime().subscribe(time => this.counterTime = time)
-    this.clicksService.getTotalClicks().subscribe(total => this.total = total)
-    this.clicksService.getAverageClicks().subscribe(average => this.average = average)
-    
+    this.timerService.getTotalTime().subscribe(time => this.counterTime = time);
+    this.clicksService.getTotalClicks().subscribe(total => this.total = total);
+    this.clicksService.getAverageClicks().subscribe(average => this.average = average);
+
     this.usernameService.getUsername().subscribe(username => {
-      this.owner = username
+      this.owner = username;
 
-      this.restartGame()
-    })
+      this.restartGame();
+    });
   }
 
   startGame() {
-    this.clicksService.resetClicks()
+    this.clicksService.resetClicks();
 
-    this.speedService.startCalculateSpeed()
-    this.timerService.startTimer()
+    this.speedService.startCalculateSpeed();
+    this.timerService.startTimer();
 
-    this.isGameStarted.next(true)
-    this.isGameDelayed.next(false)
-    this.isInitGame.next(false)
+    this.isGameStarted.next(true);
+    this.isGameDelayed.next(false);
+    this.isInitGame.next(false);
   }
 
   finishGame() {
-    this.speedService.stopCalculateSpeed()
+    this.speedService.stopCalculateSpeed();
 
-    this.clicksService.changeAverage()
+    this.clicksService.changeAverage();
 
-    this.isGameStarted.next(false)
-    this.toggleTimeoutGameDelay()
-    this.isInitGame.next(false)
+    this.isGameStarted.next(false);
+    this.toggleTimeoutGameDelay();
+    this.isInitGame.next(false);
 
-    this.checkScore()
+    this.checkScore();
   }
 
   restartGame() {
-    this.timerService.finishTimer()
+    this.timerService.finishTimer();
 
-    this.isGameStarted.next(false)
-    this.isGameDelayed.next(false)
-    this.isInitGame.next(true)
+    this.isGameStarted.next(false);
+    this.isGameDelayed.next(false);
+    this.isInitGame.next(true);
   }
 
   checkScore() {
+    const date: Date = new Date();
+
     const newHighscore: Highscore = {
       counterTime: this.counterTime,
       owner: this.owner,
       total: this.total,
       average: this.average,
-      reached: new Date
-    }
+      reached: date
+    };
 
-    this.highscoreService.checkPlayersScore(newHighscore)
+    this.highscoreService.checkPlayersScore(newHighscore);
   }
 
   toggleTimeoutGameDelay() {
-    this.isGameDelayed.next(true)
+    this.isGameDelayed.next(true);
     setTimeout(() => this.isGameDelayed.next(false), 2000);
   }
 
   getIsGameStarted(): Observable<boolean> {
-    return this.isGameStarted.asObservable()
+    return this.isGameStarted.asObservable();
   }
 
   getIsGameDelayed(): Observable<boolean> {
-    return this.isGameDelayed.asObservable()
+    return this.isGameDelayed.asObservable();
   }
 
   getIsInitGame(): Observable<boolean> {
-    return this.isInitGame.asObservable()
+    return this.isInitGame.asObservable();
   }
 }

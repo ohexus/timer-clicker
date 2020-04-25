@@ -6,8 +6,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./highscore-tile.component.scss']
 })
 export class HighscoreTileComponent {
-  @Input() owner: string
-  @Input() total: number
-  @Input() average: number
-  @Input() reached: string
+  @Input() owner: string;
+  @Input() total: number;
+  @Input() average: number;
+  @Input() reached: string;
 }

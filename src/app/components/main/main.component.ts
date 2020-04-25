@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { clickerTitle } from '../../consts/consts'
+import { clickerTitle } from '../../consts/consts';
 import { UsernameService } from 'src/app/services/username-service/username.service';
 import { Router } from '@angular/router';
 
@@ -9,40 +9,40 @@ import { Router } from '@angular/router';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-  title: string = clickerTitle
+  title: string = clickerTitle;
 
-  username: string = ''
+  username = '';
 
-  isWarningShow: boolean = false
+  isWarningShow = false;
 
-  timerId: any
+  timerId: any;
 
   constructor(
     private router: Router,
     private usernameService: UsernameService
   ) {
-    this.usernameService.getUsername().subscribe(username => this.username = username)
+    this.usernameService.getUsername().subscribe(username => this.username = username);
   }
 
   emitNewName(name: string) {
-    this.usernameService.setUsername(name)
+    this.usernameService.setUsername(name);
   }
 
   checkName() {
-    const name = this.username.trim()
+    const name = this.username.trim();
 
     if (name) {
-      this.emitNewName(name)
+      this.emitNewName(name);
 
       this.router.navigate(['/game']);
     } else {
-      clearTimeout(this.timerId)
+      clearTimeout(this.timerId);
 
-      this.isWarningShow = true
+      this.isWarningShow = true;
 
       this.timerId = setTimeout(() => {
-        this.isWarningShow = false
-      }, 3000)
+        this.isWarningShow = false;
+      }, 3000);
     }
   }
 }

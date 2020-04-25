@@ -8,48 +8,48 @@ import { GameService } from '../../../services/game-service/game.service';
   styleUrls: ['./greeting.component.scss']
 })
 export class GreetingComponent {
-  username: string = ''
-  
-  isInitGame: boolean
+  username = '';
 
-  isShown: boolean = false
-  timerId: any
+  isInitGame: boolean;
+
+  isShown = false;
+  timerId: any;
 
   constructor(
     private usernameService: UsernameService,
     private gameService: GameService
   ) {
-    this.usernameService.getUsername().subscribe(username => this.username = username)
+    this.usernameService.getUsername().subscribe(username => this.username = username);
 
     this.gameService.getIsInitGame().subscribe(is => {
-      this.isInitGame = is
+      this.isInitGame = is;
 
       if (is !== false) {
-        this.showGreeting()
+        this.showGreeting();
       } else {
-        this.closeGreeting()
+        this.closeGreeting();
       }
-    })
+    });
   }
 
   showGreeting() {
-    this.isShown = true
+    this.isShown = true;
 
     // seconds
-    const animationLength = 3
-    let animationCurrentSeconds = 0
+    const animationLength = 3;
+    let animationCurrentSeconds = 0;
 
     this.timerId = setInterval(() => {
       if (animationCurrentSeconds < animationLength) {
-        animationCurrentSeconds++
+        animationCurrentSeconds++;
       } else {
-        this.closeGreeting()
+        this.closeGreeting();
       }
-    }, 1000)
+    }, 1000);
   }
 
   closeGreeting() {
-    this.isShown = false
-    clearInterval(this.timerId)
+    this.isShown = false;
+    clearInterval(this.timerId);
   }
 }

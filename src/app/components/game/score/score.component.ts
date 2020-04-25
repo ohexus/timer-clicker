@@ -9,37 +9,37 @@ import { GameService } from '../../../services/game-service/game.service';
   styleUrls: ['./score.component.scss']
 })
 export class ScoreComponent {
-  total: number
-  average: number
+  total: number;
+  average: number;
 
-  isGameStarted: boolean
-  isInitGame: boolean
+  isGameStarted: boolean;
+  isInitGame: boolean;
 
-  username: string = ''
-  
+  username = '';
+
   constructor(
     private usernameService: UsernameService,
     private clicksService: ClicksService,
     private gameService: GameService
   ) {
     this.usernameService.getUsername().subscribe(username => {
-      this.username = username
-    })
-    
+      this.username = username;
+    });
+
     this.clicksService.getTotalClicks().subscribe(total => {
-      this.total = total
-    })
-    
+      this.total = total;
+    });
+
     this.clicksService.getAverageClicks().subscribe(average => {
-      this.average = average
-    })
-    
+      this.average = average;
+    });
+
     this.gameService.getIsGameStarted().subscribe(is => {
-      this.isGameStarted = is
-    })
-    
+      this.isGameStarted = is;
+    });
+
     this.gameService.getIsInitGame().subscribe(is => {
-      this.isInitGame = is
-    })
+      this.isInitGame = is;
+    });
   }
 }

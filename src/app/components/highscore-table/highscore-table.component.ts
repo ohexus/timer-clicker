@@ -7,32 +7,32 @@ import { Highscore, HighscoreTableService } from '../../services/highscore-table
   styleUrls: ['./highscore-table.component.scss']
 })
 export class HighscoreTableComponent {
-  highscoresArray: Highscore[]
+  highscoresArray: Highscore[];
 
-  timeFilter: number = 10
-  sortCriteria: string = 'total'
-  isAscending: boolean = false
+  timeFilter = 10;
+  sortCriteria = 'total';
+  isAscending = false;
 
-  fullscreen: boolean = false
+  fullscreen = false;
 
   constructor(private highscoreTableService: HighscoreTableService) {
-    this.highscoreTableService.getHighscores().subscribe(scores => this.highscoresArray = scores)
+    this.highscoreTableService.getHighscores().subscribe(scores => this.highscoresArray = scores);
   }
 
   toggleFullscreen() {
-    this.fullscreen = !this.fullscreen
+    this.fullscreen = !this.fullscreen;
   }
 
   changeTimeFilter(value: number) {
-    this.timeFilter = value
+    this.timeFilter = value;
   }
 
   changeSortCriteria(value: string) {
-    this.sortCriteria = value
+    this.sortCriteria = value;
   }
 
   changeIsAscending(value: boolean) {
-    this.isAscending = value
+    this.isAscending = value;
   }
 
 }

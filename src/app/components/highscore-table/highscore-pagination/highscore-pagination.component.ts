@@ -6,20 +6,20 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./highscore-pagination.component.scss']
 })
 export class HighscorePaginationComponent {
-  timeFilter: number = 10
+  timeFilter = 10;
 
-  @Output() timeFilterEvent = new EventEmitter()
+  @Output() timeFilterEvent = new EventEmitter();
 
   changeTimeFilter(status: string) {
     if (status === 'next') {
-      this.timeFilter++
+      this.timeFilter++;
     } else {
       if (this.timeFilter > 1) {
-        this.timeFilter--
+        this.timeFilter--;
       }
     }
 
-    this.timeFilterEvent.emit(this.timeFilter)
+    this.timeFilterEvent.emit(this.timeFilter);
   }
 
 }

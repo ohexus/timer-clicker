@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 export interface Highscore {
-  counterTime: number,
-  total: number,
-  average: number,
-  owner: string,
-  reached: Date
+  counterTime: number;
+  total: number;
+  average: number;
+  owner: string;
+  reached: Date;
 }
 
 const defaultHighscores: Highscore[] = [
@@ -45,43 +45,43 @@ const defaultHighscores: Highscore[] = [
     owner: 'Diagonalta',
     reached: new Date()
   }
-]
+];
 
 @Injectable({
   providedIn: 'root'
 })
 export class HighscoreTableService {
-  highscoresArray: BehaviorSubject<Highscore[]>
+  highscoresArray: BehaviorSubject<Highscore[]>;
 
   constructor() {
-    const localHighscores: Highscore[] = this.getLocalHighscores()
+    const localHighscores: Highscore[] = this.getLocalHighscores();
 
-    this.highscoresArray = new BehaviorSubject<Highscore[]>([...defaultHighscores, ...localHighscores])
+    this.highscoresArray = new BehaviorSubject<Highscore[]>([...defaultHighscores, ...localHighscores]);
   }
 
   getLocalHighscores(): Highscore[] {
-    return JSON.parse(localStorage.getItem('localHighscores')) || []
+    return JSON.parse(localStorage.getItem('localHighscores')) || [];
   }
 
   addHighscore(newHighscore: Highscore) {
-    this.highscoresArray.next([...this.highscoresArray.getValue(), newHighscore])
+    this.highscoresArray.next([...this.highscoresArray.getValue(), newHighscore]);
 
-    const localHighscores: Highscore[] = this.getLocalHighscores()
+    const localHighscores: Highscore[] = this.getLocalHighscores();
 
     if (localHighscores) {
-      localStorage.setItem('localHighscores', JSON.stringify([...localHighscores, newHighscore]))
+      localStorage.setItem('localHighscores', JSON.stringify([...localHighscores, newHighscore]));
     }
   }
 
   changeHighscore(newHighscore: Highscore) {
     this.highscoresArray.next(this.highscoresArray.getValue().map(score => {
       if (score.owner === newHighscore.owner && score.counterTime === newHighscore.counterTime) {
-        return newHighscore
+        return newHighscore;
       }
-      return score
-    }))
+      return score;
+    }));
 
-    localStorage.setItem('localHighscores', JSON.stringify(this.highscoresArray.getValue()))
+    localStorage.setItem('localHighscores', JSON.stringify(this.highscoresArray.getValue()));
   }
 
   checkPlayersScore(newHighscore: Highscore) {
@@ -89,20 +89,20 @@ export class HighscoreTableService {
     if (newHighscore.owner !== '') {
       const playerHighscoreByCurrentTime = this.highscoresArray.getValue()
         .filter(score => score.owner === newHighscore.owner)
-        .find(score => score.counterTime === newHighscore.counterTime)
-  
+        .find(score => score.counterTime === newHighscore.counterTime);
+
       if (playerHighscoreByCurrentTime) {
         if (newHighscore.total > playerHighscoreByCurrentTime.total) {
-          this.changeHighscore(newHighscore)
+          this.changeHighscore(newHighscore);
         }
       } else {
-        this.addHighscore(newHighscore)
+        this.addHighscore(newHighscore);
       }
     }
   }
 
   getHighscores(): Observable<Highscore[]> {
-    return this.highscoresArray.asObservable()
+    return this.highscoresArray.asObservable();
   }
 
 }

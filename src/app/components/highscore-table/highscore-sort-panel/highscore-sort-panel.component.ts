@@ -6,23 +6,23 @@ import { Component, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./highscore-sort-panel.component.scss']
 })
 export class HighscoreSortPanelComponent {
-  sortCriteria: string = 'total'
-  isAscending: boolean = false
+  sortCriteria = 'total';
+  isAscending = false;
 
-  @Output() sortCriteriaEvent = new EventEmitter()
-  @Output() isAscendingEvent = new EventEmitter()
+  @Output() sortCriteriaEvent = new EventEmitter();
+  @Output() isAscendingEvent = new EventEmitter();
 
   changeSortCriteria(value: string) {
     if (value === this.sortCriteria) {
-      this.isAscending = !this.isAscending
+      this.isAscending = !this.isAscending;
     } else {
-      this.isAscending = value === 'owner' ? true : false
-      this.sortCriteria = value
+      this.isAscending = value === 'owner' ? true : false;
+      this.sortCriteria = value;
 
-      this.sortCriteriaEvent.emit(this.sortCriteria)
+      this.sortCriteriaEvent.emit(this.sortCriteria);
     }
 
-    this.isAscendingEvent.emit(this.isAscending)
+    this.isAscendingEvent.emit(this.isAscending);
   }
 
 }

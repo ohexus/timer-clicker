@@ -1,8 +1,8 @@
-import { Component, Input } from '@angular/core'
-import { clickerTitle } from '../../consts/consts'
-import { UsernameService } from 'src/app/services/username-service/username.service'
-import { Location } from '@angular/common'
-import { Router } from '@angular/router'
+import { Component, Input } from '@angular/core';
+import { clickerTitle } from '../../consts/consts';
+import { UsernameService } from 'src/app/services/username-service/username.service';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -10,24 +10,24 @@ import { Router } from '@angular/router'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  title: string
-  username: string
+  title: string;
+  username: string;
 
-  @Input() isGameScreen: boolean
-  @Input() isMainScreen: boolean
+  @Input() isGameScreen: boolean;
+  @Input() isMainScreen: boolean;
 
   constructor(
     private usernameService: UsernameService,
     private router: Router
   ) {
-    this.title = clickerTitle
+    this.title = clickerTitle;
 
-    this.usernameService.getUsername().subscribe(username => this.username = username)
+    this.usernameService.getUsername().subscribe(username => this.username = username);
   }
 
   RouteLinkAction() {
     if (this.username !== '' && !this.isMainScreen) {
-      this.router.navigate(['/game'])
+      this.router.navigate(['/game']);
     }
   }
 }
