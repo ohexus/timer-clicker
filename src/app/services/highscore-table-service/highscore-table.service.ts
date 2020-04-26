@@ -54,13 +54,9 @@ export class HighscoreTableService {
   highscoresArray: BehaviorSubject<Highscore[]>;
 
   constructor() {
-    const localHighscores: Highscore[] = this.getLocalHighscores();
+    const localHighscores: Highscore[] = this.getLocalHighscores() || defaultHighscores;
 
     this.highscoresArray = new BehaviorSubject<Highscore[]>([...defaultHighscores, ...localHighscores]);
-  }
-
-  getLocalHighscores(): Highscore[] {
-    return JSON.parse(localStorage.getItem('localHighscores')) || [];
   }
 
   addHighscore(newHighscore: Highscore) {
@@ -68,9 +64,7 @@ export class HighscoreTableService {
 
     const localHighscores: Highscore[] = this.getLocalHighscores();
 
-    if (localHighscores) {
-      localStorage.setItem('localHighscores', JSON.stringify([...localHighscores, newHighscore]));
-    }
+    localStorage.setItem('localHighscores', JSON.stringify([...localHighscores, newHighscore]));
   }
 
   changeHighscore(newHighscore: Highscore) {
@@ -99,6 +93,10 @@ export class HighscoreTableService {
         this.addHighscore(newHighscore);
       }
     }
+  }
+
+  getLocalHighscores(): Highscore[] {
+    return JSON.parse(localStorage.getItem('localHighscores')) || [];
   }
 
   getHighscores(): Observable<Highscore[]> {
